@@ -39,7 +39,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### State Machine Breaking
 
-- (deps) [#129](https://github.com/Canto-Network/Canto/pull/129) Bump Comsos-SDK to [v0.50.8](https://github.com/cosmos/cosmos-sdk/tree/v0.50.8), CometBFT to [v0.38.9](https://github.com/cometbft/cometbft/tree/v0.38.9), ibc-go to [v8.3.2](https://github.com/cosmos/ibc-go/tree/v8.3.2), ethermint to [v0.22.0-sdk50-1](https://github.com/b-harvest/ethermint/tree/v0.22.0-sdk50-1)
+- (deps) [#129](https://github.com/Canto-Network/Canto/pull/129) Bump Comsos-SDK to [v0.50.8](https://github.com/cosmos/cosmos-sdk/releases/v0.50.8), CometBFT to [v0.38.9](https://github.com/cometbft/cometbft/releases/v0.38.9), ibc-go to [v8.3.2](https://github.com/cosmos/ibc-go/releases/v8.3.2), ethermint to [v0.22.0-sdk50-1](https://github.com/b-harvest/ethermint/releases/v0.22.0-sdk50-1)
 
 ### Improvements
 
