@@ -6,3 +6,8 @@ node_modules
 .idea
 coverage.txt
 build
+cache
+.env
+bun.lockb
+artifacts
+typechain-types
