@@ -134,7 +134,7 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	// add rosetta
 	rootCmd.AddCommand(sdkserver.RosettaCommand(encodingConfig.InterfaceRegistry, encodingConfig.Marshaler))
 
-	rootCmd.PersistentFlags().Int64Var(&tmtypes.PriorityResetHeight, "reset-priority-height", 100, "reset priority height")
+	rootCmd.PersistentFlags().Int64Var(&tmtypes.PriorityResetHeight, "reset-priority-height", 0, "reset priority height")
 
 	return rootCmd, encodingConfig
 }
