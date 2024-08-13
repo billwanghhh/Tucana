@@ -47,25 +47,23 @@ contract Pool is Ownable, IPool {
         lendContract = _lendContract;
     }
 
-    function increasePoolToken(address tokenAddress, uint256 amount) external onlyLend {
+    function increasePoolToken(address user,address tokenAddress, uint256 amount) external onlyLend {
         require(config.isWhitelistToken(tokenAddress), "Not a whitelisted token");
-        IERC20(tokenAddress).safeTransferFrom(msg.sender, address(this), amount);
-        
-        userSupply[tokenAddress][msg.sender] += amount;
+        userSupply[tokenAddress][user] += amount;
         totalSupply[tokenAddress] += amount;
 
-        emit IncreaseToken(msg.sender, tokenAddress, amount);
+        emit IncreaseToken(user, tokenAddress, amount);
     }
 
-    function decreasePoolToken(address tokenAddress, uint256 amount) external onlyLend {
-        require(userSupply[tokenAddress][msg.sender] >= amount, "Insufficient balance");
+    function decreasePoolToken(address user,address tokenAddress, uint256 amount) external onlyLend {
+        require(userSupply[tokenAddress][user] >= amount, "Insufficient balance");
 
-        userSupply[tokenAddress][msg.sender] -= amount;
+        userSupply[tokenAddress][user] -= amount;
         totalSupply[tokenAddress] -= amount;
 
-        IERC20(tokenAddress).safeTransfer(msg.sender, amount);
+        IERC20(tokenAddress).safeTransfer(user, amount);
 
-        emit DecreaseToken(msg.sender, tokenAddress, amount);
+        emit DecreaseToken(user, tokenAddress, amount);
     }
 
     function liquidateTokens(address src, address dest) external onlyLend {

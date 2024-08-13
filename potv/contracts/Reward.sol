@@ -29,7 +29,7 @@ contract Reward is Ownable, IReward {
         chain = IChain(_chainAddress);
     }
     
-    function setLendAddress(address _lendAddress) external onlyOwner {
+    function setLendContract(address _lendAddress) external onlyOwner {
         lendAddress = _lendAddress;
     }
     

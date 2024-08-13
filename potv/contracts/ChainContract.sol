@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "./interfaces/IConfig.sol";
 import "./interfaces/IChain.sol";
-contract Chain is Ownable, IChain {
+contract ChainContract is Ownable, IChain {
     using EnumerableSet for EnumerableSet.AddressSet;
 
     uint256 public constant PRECISION_DECIMALS = 6;

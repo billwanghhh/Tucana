@@ -7,9 +7,11 @@ import "./interfaces/IConfig.sol";
 import "./interfaces/IReward.sol";
 import "./interfaces/IPriceFeed.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 contract Lend is Ownable {
+    using SafeERC20 for IERC20;
     IChain public chain;
     IPool public pool;
     IConfig public config;
@@ -35,7 +37,8 @@ contract Lend is Ownable {
     function supply(address tokenType, uint256 amount, address validator) external {
         reward.updateReward(msg.sender);
         require(config.isWhitelistToken(tokenType), "ENotWhiteListToken");
-        pool.increasePoolToken(tokenType, amount);
+        IERC20(tokenType).safeTransferFrom(msg.sender, address(pool), amount);
+        pool.increasePoolToken(msg.sender, tokenType, amount);
         chain.stakeToken(msg.sender, validator, tokenType, amount);
         emit IncreaseSupplyEvent(msg.sender, tokenType, amount, validator);
     }
@@ -44,7 +47,7 @@ contract Lend is Ownable {
         reward.updateReward(msg.sender);
         uint256 maxWithdrawable = getTokenMaxWithdrawable(msg.sender, tokenType);
         require(amount <= maxWithdrawable, "EExceedWithdrawAmount");
-        pool.decreasePoolToken(tokenType, amount);
+        pool.decreasePoolToken(msg.sender, tokenType, amount);
         chain.unstakeToken(msg.sender, validator, tokenType, amount);
         emit DecreaseSupplyEvent(msg.sender, tokenType, amount, validator);
     }
