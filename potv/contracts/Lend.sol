@@ -53,7 +53,7 @@ contract Lend is Ownable {
     }
 
     function borrow(uint256 amount) external {
-        pool.borrowUSD(amount);
+        pool.borrowUSD(msg.sender, amount);
         uint256 userCollateralRatio = getUserCollateralRatio(msg.sender);
         uint256 systemMCR = config.getMCR();
         require(userCollateralRatio > systemMCR, "ELowerThanMCR");
@@ -61,7 +61,7 @@ contract Lend is Ownable {
     }
 
     function repay(uint256 amount) external {
-        pool.repayUSD(msg.sender, amount);
+        pool.repayUSD(msg.sender, msg.sender, amount);
         emit RepayEvent(msg.sender, amount);
     }
 
@@ -75,7 +75,7 @@ contract Lend is Ownable {
         reward.updateReward(msg.sender);
 
         uint256 repayAmount = pool.getUserTotalBorrow(liquidatedUser);
-        pool.repayUSD(liquidatedUser, repayAmount);
+        pool.repayUSD(msg.sender, liquidatedUser, repayAmount);
         pool.liquidateTokens(liquidatedUser, msg.sender);
         chain.liquidatePosition(msg.sender, liquidatedUser);
         emit LiquidateEvent(msg.sender, liquidatedUser, repayAmount);
@@ -120,6 +120,7 @@ contract Lend is Ownable {
         }
         return getUserSupplyTotalUSD(user) * precision / getUserBorrowTotalUSD(user);
     }
+
     // supply value = usdvalue * 10 ** systemDecimals
     function  getUserSupplyTotalUSD(address user) public view returns (uint256) {
         address[] memory whitelistTokens = config.getAllWhitelistTokens();

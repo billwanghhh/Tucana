@@ -79,19 +79,19 @@ contract Pool is Ownable, IPool {
         }
     }
 
-    function borrowUSD(uint256 amount) external onlyLend {
-        userBorrow[msg.sender] += amount;
+    function borrowUSD(address user,uint256 amount) external onlyLend {
+        userBorrow[user] += amount;
         totalBorrow += amount;
-        usdToken.mint(msg.sender, amount);
+        usdToken.mint(user, amount);
 
-        emit Borrow(msg.sender, amount);
+        emit Borrow(user, amount);
     }
 
-    function repayUSD(address repaidUser, uint256 amount) external onlyLend {
+    function repayUSD(address repayer, address repaidUser, uint256 amount) external onlyLend {
         require(userBorrow[repaidUser] >= amount, "Exceed borrow amount");
         userBorrow[repaidUser] -= amount;
         totalBorrow -= amount;
-        usdToken.burn(msg.sender, amount);
+        usdToken.burn(repayer, amount);
         emit Repay(repaidUser, amount);
     }
 

@@ -10,6 +10,7 @@ import "../contracts/Reward.sol";
 import "../contracts/Lend.sol";
 import "../contracts/Usd.sol";
 import "../contracts/test/MockToken.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 
 
@@ -62,8 +63,8 @@ contract PotvTest is Test {
         tokenAddresses[0] = address(collateral1);
         tokenAddresses[1] = address(collateral2);
         uint256[] memory tokenPrices = new uint256[](2);
-        tokenPrices[0] = 1000000000000000000;
-        tokenPrices[1] = 1000000000000000000;
+        tokenPrices[0] = 1000000;
+        tokenPrices[1] = 1000000;
         priceFeed.setTokenPrices(tokenAddresses, tokenPrices);
 
 
@@ -104,11 +105,66 @@ contract PotvTest is Test {
         lend.borrow(1 ether);
     }
 
+
+    function testFail_Borrow_LowerThanMCR() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(67 ether);
+        
+    }
+   
+
     function test_borrow() public {
         vm.startPrank(user1);
         collateral1.approve(address(lend), 10000 ether);
         lend.supply(address(collateral1), 100 ether, address(0x3));
-        lend.borrow(1 ether);
+        lend.borrow(60 ether);
+        assertEq(IERC20(address(usd)).balanceOf(user1), 60 ether);
+        assertEq(lend.getUserBorrowTotalUSD(user1), 60 * 10 ** 6);
+    }
+
+    
+    function test_repay() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);
+        lend.repay(60 ether);
+        assertEq(IERC20(address(usd)).balanceOf(user1), 0);
+        assertEq(lend.getUserBorrowTotalUSD(user1), 0);
+    }
+
+    function testFail_repayUSDExceed() public {
+         vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);
+        lend.repay(61 ether);
+    
+    }
+
+    function test_Withdraw() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.withdraw(address(collateral1), 10 ether, address(0x3));
+        assertEq(collateral1.balanceOf(address(pool)), 90 ether);
+        assertEq( pool.userSupply( address(collateral1), user1), 90 ether);
+    }
+
+    function test_withdrawWithBorrow() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);
+        lend.withdraw(address(collateral1), 10 ether, address(0x3));
+        assertEq(collateral1.balanceOf(address(pool)), 90 ether);
+        assertEq( pool.userSupply( address(collateral1), user1), 90 ether);
+        lend.repay(60 ether);
+        lend.withdraw(address(collateral1), 90 ether, address(0x3));
+          assertEq(collateral1.balanceOf(address(pool)), 0);
+        assertEq( pool.userSupply( address(collateral1), user1), 0);
     }
 
 
