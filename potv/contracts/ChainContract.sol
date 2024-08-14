@@ -74,7 +74,7 @@ contract ChainContract is Ownable, IChain {
         }
     }
 
-    function migrateStakes(address deletedValidator, address newValidator, uint256 deleteAmount) external onlyOwner {
+    function migrateStakes(address deletedValidator, address newValidator, uint256 deleteAmount) external onlyLend {
         require(deleteAmount <= MIGRATE_STAKE_LIMIT, "Exceeds migration limit");
         if (!validators.contains(newValidator)) {
             validators.add(newValidator);

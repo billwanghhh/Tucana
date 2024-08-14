@@ -92,6 +92,8 @@ contract PotvTest is Test {
         uint256 afterUserBalance = collateral1.balanceOf(user1);
         assertEq(beforePoolBalance + 100 ether, afterPoolBalance);
         assertEq(beforeUserBalance - 100 ether, afterUserBalance);
+
+        assertEq(chainContract.getUserValidatorTokenStake(user1, address(0x3), address(collateral1)), 100 ether);
     }
 
     function testFail_SupplyToNonExistValidator() public {
@@ -201,11 +203,36 @@ contract PotvTest is Test {
         assertEq(pool.userBorrow(user1), 0);
         assertEq(pool.userBorrow(user2), 60 ether);
 
+        //validators
+        assertEq(chainContract.getUserValidatorTokenStake(user1, address(0x3), address(collateral1)), 0);
+        assertEq(chainContract.getUserValidatorTokenStake(user2, address(0x3), address(collateral1)), 200 ether);
 
 
     }
 
+    function test_migrateToExistValidator() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);   
+        vm.startPrank(user2);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether); 
+           
+        vm.startPrank(owner);
+        lend.migrateStakes( address(0x3), address(0x5));    
+
+           //validators
+        assertEq(chainContract.getUserValidatorTokenStake(user1, address(0x3), address(collateral1)), 0);
+        assertEq(chainContract.getUserValidatorTokenStake(user2, address(0x3), address(collateral1)), 0 );
 
 
-  
+        assertEq(chainContract.getUserValidatorTokenStake(user1, address(0x5), address(collateral1)), 100 ether);
+        assertEq(chainContract.getUserValidatorTokenStake(user2, address(0x5), address(collateral1)), 100 ether );
+
+        //TODO
+        
+    }
+
 }
