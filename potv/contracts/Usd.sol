@@ -12,6 +12,12 @@ contract Usd is ERC20, Ownable {
         pool = IPool(_poolAddress);
     }
 
+
+
+    function setPool(address _poolAddress) external onlyOwner {
+        pool = IPool(_poolAddress);
+    }
+    
     function mint(address to, uint256 amount) external {
         require(msg.sender == address(pool), "Only pool can mint");
         _mint(to, amount);
@@ -22,7 +28,4 @@ contract Usd is ERC20, Ownable {
         _burn(from, amount);
     }
 
-    function setPool(address _poolAddress) external onlyOwner {
-        pool = IPool(_poolAddress);
-    }
 }

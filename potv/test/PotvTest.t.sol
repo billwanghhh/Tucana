@@ -77,12 +77,38 @@ contract PotvTest is Test {
         //set reward token
         reward.setRewardToken(address(rewardToken));
 
+        pool.setUsdAddress(address(usd));
+        usd.setPool(address(pool));
     }
 
-    function testDeposit() public {
+    function testSupplyToExistValidator() public {
         vm.startPrank(user1);
         collateral1.approve(address(lend), 10000 ether);
-        lend.supply(address(collateral1), 10000 ether, address(0x3));
+        uint256 beforePoolBalance = collateral1.balanceOf(address(pool));
+        uint256 beforeUserBalance = collateral1.balanceOf(user1);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        uint256 afterPoolBalance = collateral1.balanceOf(address(pool));
+        uint256 afterUserBalance = collateral1.balanceOf(user1);
+        assertEq(beforePoolBalance + 100 ether, afterPoolBalance);
+        assertEq(beforeUserBalance - 100 ether, afterUserBalance);
+    }
+
+    function testFail_SupplyToNonExistValidator() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x5));
+    }
+
+    function testFail_Borrow_NotEnoughCollateral() public {
+        vm.startPrank(user1);
+        lend.borrow(1 ether);
+    }
+
+    function test_borrow() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(1 ether);
     }
 
 

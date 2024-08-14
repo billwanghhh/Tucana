@@ -93,6 +93,8 @@ contract Lend is Ownable {
         
         chain.migrateStakes(deletedValidator, newValidator, deleteAmount);
     }
+
+
     function getTokenMaxWithdrawable(address user, address tokenType) public view returns (uint256) {
         uint256 borrowUSD = getUserBorrowTotalUSD(user);
         uint256 mcr = config.getMCR();
@@ -113,10 +115,13 @@ contract Lend is Ownable {
     function getUserCollateralRatio(address user) public view returns (uint256) {
         uint256 precisionDecimals = config.getPrecision();
         uint256 precision = 10 ** precisionDecimals;
+        if (getUserBorrowTotalUSD(user) == 0 && getUserSupplyTotalUSD(user) != 0) {
+            return type(uint256).max;
+        }
         return getUserSupplyTotalUSD(user) * precision / getUserBorrowTotalUSD(user);
     }
-
-    function getUserSupplyTotalUSD(address user) public view returns (uint256) {
+    // supply value = usdvalue * 10 ** systemDecimals
+    function  getUserSupplyTotalUSD(address user) public view returns (uint256) {
         address[] memory whitelistTokens = config.getAllWhitelistTokens();
         uint256 usdValue = 0;
         for (uint256 i = 0; i < whitelistTokens.length; i++) {
@@ -128,14 +133,14 @@ contract Lend is Ownable {
         }
         return usdValue;
     }
-    
+    //borrow value = usdvalue * 10 ** systemDecimals
     function getUserBorrowTotalUSD(address user) public view returns (uint256) {
         uint256 userTokenBorrow = pool.getUserTotalBorrow(user);
         uint256 usdDecimals = usd.decimals();
         uint256 systemPriceDecimals = config.getPrecision();
         return userTokenBorrow * 10 ** systemPriceDecimals / 10 ** usdDecimals;
     }
-
+    // price = usdValue * 10 ** systemDecimals 
     function getTokenPrice(address tokenType) public view returns (uint256) {
         uint256 price = priceFeed.latestAnswer(tokenType);
         uint256 decimals = priceFeed.getPriceDecimals();
