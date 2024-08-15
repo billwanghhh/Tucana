@@ -139,7 +139,7 @@ func DefaultConfig() Config {
 		Amino:             tempApp.LegacyAmino(),
 	}
 
-	chainID := fmt.Sprintf("canto_%d-1", tmrand.Int63n(9999999999999)+1)
+	chainID := fmt.Sprintf("tuc_%d-1", tmrand.Int63n(9999999999999)+1)
 	return Config{
 		Codec:             encCfg.Codec,
 		TxConfig:          encCfg.TxConfig,
@@ -356,7 +356,7 @@ func New(l Logger, baseDir string, cfg Config) (*Network, error) {
 
 		nodeDirName := fmt.Sprintf("node%d", i)
 		nodeDir := filepath.Join(network.BaseDir, nodeDirName, "tucd")
-		clientDir := filepath.Join(network.BaseDir, nodeDirName, "cantocli")
+		clientDir := filepath.Join(network.BaseDir, nodeDirName, "tuccli")
 		gentxsDir := filepath.Join(network.BaseDir, "gentxs")
 
 		err := os.MkdirAll(filepath.Join(nodeDir, "config"), 0o750)

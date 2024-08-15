@@ -5,7 +5,7 @@ import (
 )
 
 // RootCodespace is the codespace for all errors defined in this package
-const RootCodespace = "canto"
+const RootCodespace = "tuc"
 
 // root error codes for canto
 const (

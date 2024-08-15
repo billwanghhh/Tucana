@@ -15,9 +15,9 @@ import (
 
 const (
 	// MainnetChainID defines the canto EIP155 chain ID for mainnet
-	MainnetChainID = "canto_9001"
-	// TestnetChainID defines the canto EIP155 chain ID for testnet
-	TestnetChainID = "canto_9000"
+	MainnetChainID = "tuc_9001"
+	// TestnetChainID defines the tuc EIP155 chain ID for testnet
+	TestnetChainID = "tuc_9000"
 )
 
 // IsMainnet returns true if the chain-id has the canto mainnet EIP155 chain prefix.
