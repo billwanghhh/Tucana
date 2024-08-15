@@ -23,29 +23,29 @@ RUN apt-get update &&\
 
 RUN snap install go --classic
 
-# builds out cantod
+# builds out tucd
 RUN git clone https://github.com/Canto-Network/Canto-Testnet
-WORKDIR /Canto-Testnet/cmd/cantod
+WORKDIR /Canto-Testnet/cmd/tucd
 RUN go install -tags ledger ./... &&\
-    mv $HOME/go/bin/cantod /usr/bin/
+    mv $HOME/go/bin/tucd /usr/bin/
 
 # generate keys
-RUN cantod keys add $KEY_NAME
-    # cantod keys add $KEY_NAME --recover &&\
-    # cantod keys add $KEY_NAME --ledger 
+RUN tucd keys add $KEY_NAME
+    # tucd keys add $KEY_NAME --recover &&\
+    # tucd keys add $KEY_NAME --ledger
 
 # initialize node
-RUN cantod init $MONIKER --chain-id canto_9624-1
+RUN tucd init $MONIKER --chain-id canto_9624-1
 
 # get genesis file
-RUN wget https://github.com/Canto-Network/Canto-Testnet-v2/raw/main/genesis.json -P $HOME/.cantod/config/
-RUN sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0001acanto"/g' $HOME/.cantod/config/app.toml
-RUN wget https://github.com/Canto-Network/Canto-Testnet-v2/raw/main/Docker/cantod.service -P $HOME/systemd/system/
+RUN wget https://github.com/Canto-Network/Canto-Testnet-v2/raw/main/genesis.json -P $HOME/.tucd/config/
+RUN sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0001acanto"/g' $HOME/.tucd/config/app.toml
+RUN wget https://github.com/Canto-Network/Canto-Testnet-v2/raw/main/Docker/tucd.service -P $HOME/systemd/system/
 
-# run cantod
-WORKDIR /Canto-Testnet/cmd/cantod
+# run tucd
+WORKDIR /Canto-Testnet/cmd/tucd
 RUN sudo systemctl daemon-reload &&\
-    sudo systemctl enable cantod.service &&\
-    systemctl start cantod && journalctl -u cantod -f
+    sudo systemctl enable tucd.service &&\
+    systemctl start tucd && journalctl -u tucd -f
 
 ENTRYPOINT ["/bin/bash"]

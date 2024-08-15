@@ -51,7 +51,7 @@ const (
 	EnvPrefix = "canto"
 )
 
-// NewRootCmd creates a new root command for cantod. It is called once in the
+// NewRootCmd creates a new root command for tucd. It is called once in the
 // main function.
 func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	tempApp := app.NewCanto(

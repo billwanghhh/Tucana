@@ -10,11 +10,11 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/Canto-Network/Canto/v8/app"
-	cantod "github.com/Canto-Network/Canto/v8/cmd/cantod"
+	tucd "github.com/Canto-Network/Canto/v8/cmd/tucd"
 )
 
 func TestInitCmd(t *testing.T) {
-	rootCmd, _ := cantod.NewRootCmd()
+	rootCmd, _ := tucd.NewRootCmd()
 	rootCmd.SetArgs([]string{
 		"init",       // Test the init cmd
 		"canto-test", // Moniker
@@ -27,7 +27,7 @@ func TestInitCmd(t *testing.T) {
 }
 
 func TestAddKeyLedgerCmd(t *testing.T) {
-	rootCmd, _ := cantod.NewRootCmd()
+	rootCmd, _ := tucd.NewRootCmd()
 	rootCmd.SetArgs([]string{
 		"keys",
 		"add",

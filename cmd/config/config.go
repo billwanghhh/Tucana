@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	AppName = "cantod"
+	AppName = "tucd"
 	// Bech32Prefix defines the Bech32 prefix used for EthAccounts
 	Bech32Prefix = "canto"
 

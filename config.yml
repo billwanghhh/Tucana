@@ -10,15 +10,15 @@ faucet:
   name: bob 
   coins: ["10acanto"]
 build:
-  binary: "cantod"
+  binary: "tucd"
 init:
-  home: "$HOME/.cantod"
+  home: "$HOME/.tucd"
   app:
     evm-rpc:
       address: "0.0.0.0:8545"     # change the JSON-RPC address and port
       ws-address: "0.0.0.0:8546"  # change the JSON-RPC websocket address and port
 genesis:
-  chain_id: "cantod_9000-1"
+  chain_id: "tucd_9000-1"
   app_state:
     staking:
       params:
