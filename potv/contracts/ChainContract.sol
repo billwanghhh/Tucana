@@ -112,6 +112,11 @@ contract ChainContract is Ownable, IChain {
         return validators.values();
     }
 
+
+    function containsValidator(address validator) external view returns (bool) {
+        return validators.contains(validator);
+    }
+
     function getValidatorStakedUsers(address validator) external view returns (address[] memory) {
         return validatorStakedUsers[validator].values();
     }

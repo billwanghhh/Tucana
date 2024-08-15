@@ -82,7 +82,10 @@ contract Lend is Ownable {
     }
 
     function migrateStakes(address deletedValidator, address newValidator) external onlyOwner {
+
+        require(chain.containsValidator(deletedValidator), "EInvalidValidator");
         uint256 migrateStakeLimit = chain.getMigrateStakeLimit();
+
         address[] memory validatorStakedUsers = chain.getValidatorStakedUsers(deletedValidator);
         uint256 deleteAmount = validatorStakedUsers.length <= migrateStakeLimit ? validatorStakedUsers.length : migrateStakeLimit;
         

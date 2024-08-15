@@ -207,10 +207,46 @@ contract PotvTest is Test {
         assertEq(chainContract.getUserValidatorTokenStake(user1, address(0x3), address(collateral1)), 0);
         assertEq(chainContract.getUserValidatorTokenStake(user2, address(0x3), address(collateral1)), 200 ether);
 
-
     }
 
-    function test_migrateToExistValidator() public {
+    function testFail_liquidate() public {
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);   
+        vm.startPrank(user2);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);     
+
+        vm.startPrank(owner);
+        
+        //user 2 liquidate user 1
+        vm.startPrank(user2);
+        lend.liquidate( user1);
+    }
+
+
+
+    function testFail_MigrateFromNonExistValidator() public {
+        vm.startPrank(user1);
+       collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether);   
+        vm.startPrank(user2);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        lend.borrow(60 ether); 
+           
+        vm.startPrank(owner);
+        lend.migrateStakes( address(0x5), address(0x4));    
+    }
+
+    function testFail_migrateToExistValidator() public {
+        
+    }
+
+    function test_migrateToNonExistValidator() public {
         vm.startPrank(user1);
         collateral1.approve(address(lend), 10000 ether);
         lend.supply(address(collateral1), 100 ether, address(0x3));
@@ -231,7 +267,11 @@ contract PotvTest is Test {
         assertEq(chainContract.getUserValidatorTokenStake(user1, address(0x5), address(collateral1)), 100 ether);
         assertEq(chainContract.getUserValidatorTokenStake(user2, address(0x5), address(collateral1)), 100 ether );
 
-        //TODO
+
+        assertEq(chainContract.containsValidator(address(0x3)), false);
+        assertEq(chainContract.containsValidator(address(0x5)), true);
+
+
         
     }
 

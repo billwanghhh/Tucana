@@ -13,7 +13,7 @@ interface IChain {
     function getUserValidatorTokenStake(address user, address validator, address tokenType) external view returns (uint256);
     function getValidatorTokenStake(address validator, address tokenType) external view returns (uint256);
     function getMigrateStakeLimit() external pure returns (uint256);
-
+    function containsValidator(address validator) external view returns (bool);
     event ChainLiquidateEvent(
         address indexed liquidatedUser,
         address indexed liquidator,
