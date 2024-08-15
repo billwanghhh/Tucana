@@ -111,7 +111,7 @@ func (suite *KeeperTestSuite) DoSetupTest(t require.TestingT) {
 
 	stakingParams, err := suite.app.StakingKeeper.GetParams(suite.ctx)
 	suite.NoError(err)
-	stakingParams.BondDenom = "acanto"
+	stakingParams.BondDenom = "utuc"
 	suite.app.StakingKeeper.SetParams(suite.ctx, stakingParams)
 }
 

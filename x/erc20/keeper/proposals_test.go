@@ -101,9 +101,9 @@ func (suite KeeperTestSuite) TestRegisterCoin() {
 			false,
 		},
 		{
-			"fail: evm denom registration - aCANTO",
+			"fail: evm denom registration - utuc",
 			func() {
-				metadata.Base = "aCANTO"
+				metadata.Base = "utuc"
 				err := suite.app.BankKeeper.MintCoins(suite.ctx, inflationtypes.ModuleName, sdk.Coins{sdk.NewInt64Coin(metadata.Base, 1)})
 				suite.Require().NoError(err)
 			},
