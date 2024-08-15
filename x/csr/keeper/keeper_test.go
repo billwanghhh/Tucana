@@ -10,9 +10,9 @@ import (
 	. "github.com/onsi/gomega"
 
 	sdkmath "cosmossdk.io/math"
-	"github.com/Canto-Network/Canto/v8/app"
-	"github.com/Canto-Network/Canto/v8/contracts"
-	"github.com/Canto-Network/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Canto/v8/app"
+	"github.com/TucanaProtocol/Canto/v8/contracts"
+	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	cosmosed25519 "github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"

@@ -1,9 +1,9 @@
 package govshuttle
 
 import (
-	//"github.com/Canto-Network/Canto/v2/testutil/sample"
-	govshuttlesimulation "github.com/Canto-Network/Canto/v8/x/govshuttle/simulation"
-	"github.com/Canto-Network/Canto/v8/x/govshuttle/types"
+	//"github.com/TucanaProtocol/Canto/v2/testutil/sample"
+	govshuttlesimulation "github.com/TucanaProtocol/Canto/v8/x/govshuttle/simulation"
+	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	"github.com/cosmos/cosmos-sdk/types/module"

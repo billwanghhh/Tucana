@@ -4,8 +4,8 @@ import (
 	"math/big"
 
 	errorsmod "cosmossdk.io/errors"
-	"github.com/Canto-Network/Canto/v8/contracts"
-	"github.com/Canto-Network/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Canto/v8/contracts"
+	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"

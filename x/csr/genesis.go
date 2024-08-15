@@ -1,8 +1,8 @@
 package csr
 
 import (
-	"github.com/Canto-Network/Canto/v8/x/csr/keeper"
-	"github.com/Canto-Network/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Canto/v8/x/csr/keeper"
+	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	"github.com/ethereum/go-ethereum/common"

@@ -11,10 +11,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec/address"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	coinswapv1 "github.com/Canto-Network/Canto/v8/api/canto/coinswap/v1"
-	erc20v1 "github.com/Canto-Network/Canto/v8/api/canto/erc20/v1"
-	coinswaptypes "github.com/Canto-Network/Canto/v8/x/coinswap/types"
-	erc20types "github.com/Canto-Network/Canto/v8/x/erc20/types"
+	coinswapv1 "github.com/TucanaProtocol/Canto/v8/api/canto/coinswap/v1"
+	erc20v1 "github.com/TucanaProtocol/Canto/v8/api/canto/erc20/v1"
+	coinswaptypes "github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
+	erc20types "github.com/TucanaProtocol/Canto/v8/x/erc20/types"
 )
 
 func TestDefineCustomGetSigners(t *testing.T) {

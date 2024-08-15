@@ -6,7 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/evmos/ethermint/tests"
 
-	"github.com/Canto-Network/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
 )
 
 func (suite *KeeperTestSuite) TestTokenPairs() {

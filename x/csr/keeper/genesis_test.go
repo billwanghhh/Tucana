@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"time"
 
-	"github.com/Canto-Network/Canto/v8/x/csr"
-	"github.com/Canto-Network/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Canto/v8/x/csr"
+	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
 	"github.com/evmos/ethermint/tests"
 )
 

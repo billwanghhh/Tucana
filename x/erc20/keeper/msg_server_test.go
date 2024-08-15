@@ -20,10 +20,10 @@ import (
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/Canto-Network/Canto/v8/testutil"
-	"github.com/Canto-Network/Canto/v8/x/erc20/keeper"
-	"github.com/Canto-Network/Canto/v8/x/erc20/types"
-	inflationtypes "github.com/Canto-Network/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Canto/v8/testutil"
+	"github.com/TucanaProtocol/Canto/v8/x/erc20/keeper"
+	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	inflationtypes "github.com/TucanaProtocol/Canto/v8/x/inflation/types"
 )
 
 const (

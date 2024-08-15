@@ -17,7 +17,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/version"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
-	"github.com/Canto-Network/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
 )
 
 var (

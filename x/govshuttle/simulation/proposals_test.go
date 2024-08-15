@@ -5,13 +5,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Canto-Network/Canto/v8/app/params"
+	"github.com/TucanaProtocol/Canto/v8/app/params"
 	"github.com/stretchr/testify/require"
 
 	sdkmath "cosmossdk.io/math"
-	"github.com/Canto-Network/Canto/v8/app"
-	"github.com/Canto-Network/Canto/v8/x/govshuttle/simulation"
-	"github.com/Canto-Network/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Canto/v8/app"
+	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/simulation"
+	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
 
 	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
 

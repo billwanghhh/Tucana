@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 
-	"github.com/Canto-Network/Canto/v8/x/coinswap/types"
+	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
 )
 
 var _ types.QueryServer = Keeper{}

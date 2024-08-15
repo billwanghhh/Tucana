@@ -5,12 +5,12 @@ import (
 
 	errorsmod "cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"
-	"github.com/Canto-Network/Canto/v8/contracts"
+	"github.com/TucanaProtocol/Canto/v8/contracts"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Canto-Network/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
 
-	erc20types "github.com/Canto-Network/Canto/v8/x/erc20/types"
+	erc20types "github.com/TucanaProtocol/Canto/v8/x/erc20/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 )

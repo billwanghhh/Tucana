@@ -2,7 +2,7 @@ package v2
 
 import (
 	sdkmath "cosmossdk.io/math"
-	"github.com/Canto-Network/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

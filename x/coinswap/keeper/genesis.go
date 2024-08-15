@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Canto-Network/Canto/v8/x/coinswap/types"
+	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
 )
 
 // InitGenesis initializes the coinswap module's state from a given genesis state.

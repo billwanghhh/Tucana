@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/Canto-Network/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
 )
 
 func (suite *KeeperTestSuite) TestQueryParams() {

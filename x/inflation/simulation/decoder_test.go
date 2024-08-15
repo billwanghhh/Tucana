@@ -5,15 +5,15 @@ import (
 	"testing"
 
 	sdkmath "cosmossdk.io/math"
-	"github.com/Canto-Network/Canto/v8/x/inflation"
+	"github.com/TucanaProtocol/Canto/v8/x/inflation"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
 	"github.com/stretchr/testify/require"
 
 	"github.com/cosmos/cosmos-sdk/types/kv"
 
-	"github.com/Canto-Network/Canto/v8/x/inflation/simulation"
-	"github.com/Canto-Network/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Canto/v8/x/inflation/simulation"
+	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
 )
 
 func TestInflationStore(t *testing.T) {
