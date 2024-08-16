@@ -242,6 +242,12 @@ contract PotvTest is Test {
         lend.migrateStakes( address(0x5), address(0x4));    
     }
 
+
+    function test_migrateWithoutSupply() public {
+        vm.startPrank(owner);
+       lend.migrateStakes( address(0x3), address(0x5));    
+    }
+
     function test_migrateToNonExistValidator() public {
         vm.startPrank(user1);
         collateral1.approve(address(lend), 10000 ether);
@@ -314,8 +320,8 @@ contract PotvTest is Test {
         assertEq(rewardToken.balanceOf(user1), 500 ether);
         assertEq(rewardToken.balanceOf(user2), 500 ether);
         
-    //     // Verify claimable rewards are now zero
-    //     assertEq(reward.claimableReward(user1), 0, "User1 should have no claimable rewards left");
-    //     assertEq(reward.claimableReward(user2), 0, "User2 should have no claimable rewards left");
+        // Verify claimable rewards are now zero
+        assertEq(reward.claimableReward(user1), 0, "User1 should have no claimable rewards left");
+        assertEq(reward.claimableReward(user2), 0, "User2 should have no claimable rewards left");
     }
 }
