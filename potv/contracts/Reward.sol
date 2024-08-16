@@ -37,7 +37,7 @@ contract Reward is Ownable, IReward {
         rewardToken = IERC20(_rewardToken);
     }
 
-    function updateReward(address user) public onlyLend {
+    function updateReward(address user) public {
         uint256 earnedAmount = earned(user);
         rewards[user] += earnedAmount;
 

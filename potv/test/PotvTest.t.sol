@@ -242,10 +242,6 @@ contract PotvTest is Test {
         lend.migrateStakes( address(0x5), address(0x4));    
     }
 
-    function testFail_migrateToExistValidator() public {
-        
-    }
-
     function test_migrateToNonExistValidator() public {
         vm.startPrank(user1);
         collateral1.approve(address(lend), 10000 ether);
@@ -275,4 +271,51 @@ contract PotvTest is Test {
         
     }
 
+    function test_rewardDistribution() public {
+        // Setup initial stakes for users
+        vm.startPrank(user1);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        
+        vm.startPrank(user2);
+        collateral1.approve(address(lend), 10000 ether);
+        lend.supply(address(collateral1), 100 ether, address(0x3));
+        
+        // Prepare reward distribution parameters
+        address[] memory validators = new address[](1);
+        validators[0] = address(0x3);
+        
+        address[] memory lpTokens = new address[](1);
+        lpTokens[0] = address(collateral1);
+        
+        uint256[][] memory rewardAmounts = new uint256[][](1);
+        rewardAmounts[0] = new uint256[](1);
+        rewardAmounts[0][0] = 1000 ether; // 1000 tokens as reward
+        
+
+        assertEq(reward.claimableReward(user1), 0);
+        assertEq(reward.claimableReward(user2), 0);
+        // Distribute rewards
+        vm.startPrank(owner);
+        rewardToken.mint(owner, 1000 ether);
+        rewardToken.approve(address(reward), 1000 ether);
+        reward.distributeReward(validators, lpTokens, rewardAmounts);
+        assertEq(reward.claimableReward(user1) , 500 ether);
+        assertEq(reward.claimableReward(user2) , 500 ether); 
+  
+        // Users claim their rewards
+        vm.startPrank(user1);
+        reward.claimReward();
+        
+        vm.startPrank(user2);
+        reward.claimReward();
+        
+        // Verify rewards were transferred
+        assertEq(rewardToken.balanceOf(user1), 500 ether);
+        assertEq(rewardToken.balanceOf(user2), 500 ether);
+        
+    //     // Verify claimable rewards are now zero
+    //     assertEq(reward.claimableReward(user1), 0, "User1 should have no claimable rewards left");
+    //     assertEq(reward.claimableReward(user2), 0, "User2 should have no claimable rewards left");
+    }
 }
