@@ -4,7 +4,7 @@ package keeper
 
 import (
 	errorsmod "cosmossdk.io/errors"
-	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 )
 
 // x/csr module sentinel errors

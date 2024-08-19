@@ -7,9 +7,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	module "github.com/TucanaProtocol/Canto/v8/x/coinswap"
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
+	module "github.com/TucanaProtocol/Tucana/v8/x/coinswap"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 	"github.com/cosmos/cosmos-sdk/types/kv"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
 )

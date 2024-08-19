@@ -8,7 +8,7 @@ import (
 	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 )
 
 // Keeper of the inflation store

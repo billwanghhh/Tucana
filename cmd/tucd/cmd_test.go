@@ -9,8 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 	"github.com/stretchr/testify/require"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	tucd "github.com/TucanaProtocol/Canto/v8/cmd/tucd"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	tucd "github.com/TucanaProtocol/Tucana/v8/cmd/tucd"
 )
 
 func TestInitCmd(t *testing.T) {

@@ -16,12 +16,12 @@ import (
 	"github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	ibctesting "github.com/TucanaProtocol/Canto/v8/ibc/testing"
-	coinswaptypes "github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
-	inflationtypes "github.com/TucanaProtocol/Canto/v8/x/inflation/types"
-	onboardingtest "github.com/TucanaProtocol/Canto/v8/x/onboarding/testutil"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	ibctesting "github.com/TucanaProtocol/Tucana/v8/ibc/testing"
+	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
+	inflationtypes "github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
+	onboardingtest "github.com/TucanaProtocol/Tucana/v8/x/onboarding/testutil"
 )
 
 var (

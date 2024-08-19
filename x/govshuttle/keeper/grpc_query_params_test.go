@@ -4,7 +4,7 @@ import (
 	"testing"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 	// "github.com/stretchr/testify/require"
-	// "github.com/TucanaProtocol/Canto/v2/x/govshuttle/types"
+	// "github.com/TucanaProtocol/Tucana/v2/x/govshuttle/types"
 )
 
 func TestParamsQuery(t *testing.T) {

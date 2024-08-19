@@ -6,7 +6,7 @@ import (
 	"time"
 
 	sdkmath "cosmossdk.io/math"
-	"github.com/TucanaProtocol/Canto/v8/app/params"
+	"github.com/TucanaProtocol/Tucana/v8/app/params"
 	abci "github.com/cometbft/cometbft/abci/types"
 	"github.com/stretchr/testify/require"
 
@@ -18,9 +18,9 @@ import (
 
 	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 func TestWeightedOperations(t *testing.T) {

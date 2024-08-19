@@ -6,9 +6,9 @@ import (
 	"log"
 	"math/big"
 
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	_ "github.com/TucanaProtocol/Canto/v8/x/csr/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	_ "github.com/TucanaProtocol/Tucana/v8/x/csr/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	evmtypes "github.com/evmos/ethermint/x/evm/types"

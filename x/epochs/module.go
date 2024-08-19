@@ -20,10 +20,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/client/cli"
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/client/cli"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/types"
 )
 
 var (

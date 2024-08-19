@@ -14,10 +14,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/TucanaProtocol/Canto/v8/ibc"
-	coinswaptypes "github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
-	erc20types "github.com/TucanaProtocol/Canto/v8/x/erc20/types"
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/ibc"
+	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
+	erc20types "github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 // OnRecvPacket performs an IBC receive callback.

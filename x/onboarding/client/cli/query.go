@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 // GetQueryCmd returns the parent command for all onboarding CLI query commands.

@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 var _ types.QueryServer = Keeper{}

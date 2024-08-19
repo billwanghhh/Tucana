@@ -17,9 +17,9 @@ import (
 	"github.com/evmos/ethermint/tests"
 	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 var (

@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 	"github.com/stretchr/testify/require"
 )
 

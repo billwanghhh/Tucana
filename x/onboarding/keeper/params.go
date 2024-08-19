@@ -3,7 +3,7 @@ package keeper
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 // GetParams returns the total set of onboarding parameters.

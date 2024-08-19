@@ -9,10 +9,10 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/evmos/ethermint/tests"
 
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	csrTypes "github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	csrTypes "github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 // This test suite will run a simulation of sorts where transactions will have

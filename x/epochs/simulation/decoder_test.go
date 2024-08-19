@@ -10,9 +10,9 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/types/kv"
 
-	"github.com/TucanaProtocol/Canto/v8/x/epochs"
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/types"
 )
 
 func TestEpochsStore(t *testing.T) {

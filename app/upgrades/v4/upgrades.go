@@ -4,7 +4,7 @@ import (
 	"context"
 
 	upgradetypes "cosmossdk.io/x/upgrade/types"
-	shuttleKeeper "github.com/TucanaProtocol/Canto/v8/x/govshuttle/keeper"
+	shuttleKeeper "github.com/TucanaProtocol/Tucana/v8/x/govshuttle/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/ethereum/go-ethereum/common"

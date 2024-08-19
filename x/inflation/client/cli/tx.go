@@ -7,7 +7,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 
-	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 )
 
 // GetTxCmd returns the transaction methods allowed for the CLI.

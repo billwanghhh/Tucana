@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
 	"github.com/evmos/ethermint/tests"
 	"github.com/stretchr/testify/require"
 
 	"github.com/cosmos/cosmos-sdk/types/kv"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 )
 
 func TestGovShuttleStore(t *testing.T) {

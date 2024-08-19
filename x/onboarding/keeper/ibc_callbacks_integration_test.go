@@ -9,10 +9,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
-	onboardingtest "github.com/TucanaProtocol/Canto/v8/x/onboarding/testutil"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
+	onboardingtest "github.com/TucanaProtocol/Tucana/v8/x/onboarding/testutil"
 )
 
 var _ = Describe("Onboarding: Performing an IBC Transfer followed by autoswap and convert", Ordered, func() {

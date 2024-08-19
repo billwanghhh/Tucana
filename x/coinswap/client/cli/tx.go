@@ -13,7 +13,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 )
 
 // GetTxCmd returns the transaction commands for this module

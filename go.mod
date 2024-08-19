@@ -1,4 +1,4 @@
-module github.com/TucanaProtocol/Canto/v8
+module github.com/TucanaProtocol/Tucana/v8
 
 go 1.21
 

@@ -8,8 +8,8 @@ import (
 
 	. "github.com/onsi/ginkgo/v2"
 
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	"github.com/TucanaProtocol/Canto/v8/testutil"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	"github.com/TucanaProtocol/Tucana/v8/testutil"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/evmos/ethermint/crypto/ethsecp256k1"

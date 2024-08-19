@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 	"github.com/cosmos/cosmos-sdk/client"
 )
 

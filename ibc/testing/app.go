@@ -23,7 +23,7 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	capabilitykeeper "github.com/cosmos/ibc-go/modules/capability/keeper"
 
-	"github.com/TucanaProtocol/Canto/v8/ibc/testing/simapp"
+	"github.com/TucanaProtocol/Tucana/v8/ibc/testing/simapp"
 	"github.com/cosmos/ibc-go/v8/modules/core/keeper"
 	ibctestingtypes "github.com/cosmos/ibc-go/v8/testing/types"
 
@@ -33,7 +33,7 @@ import (
 	tmtypes "github.com/cometbft/cometbft/types"
 	dbm "github.com/cosmos/cosmos-db"
 
-	cantoapp "github.com/TucanaProtocol/Canto/v8/app"
+	cantoapp "github.com/TucanaProtocol/Tucana/v8/app"
 )
 
 var DefaultTestingAppInit func() (TestingApp, map[string]json.RawMessage) = SetupTestingApp

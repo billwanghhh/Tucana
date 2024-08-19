@@ -5,7 +5,7 @@ import (
 
 	"cosmossdk.io/store/prefix"
 	storetypes "cosmossdk.io/store/types"
-	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"

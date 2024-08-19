@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/kv"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 )
 
 // NewDecodeStore returns a decoder function closure that unmarshals the KVPair's

@@ -46,9 +46,9 @@ import (
 	ethermint "github.com/evmos/ethermint/types"
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
-	cmdcfg "github.com/TucanaProtocol/Canto/v8/cmd/config"
-	cantokr "github.com/TucanaProtocol/Canto/v8/crypto/keyring"
-	"github.com/TucanaProtocol/Canto/v8/testutil/network"
+	cmdcfg "github.com/TucanaProtocol/Tucana/v8/cmd/config"
+	cantokr "github.com/TucanaProtocol/Tucana/v8/crypto/keyring"
+	"github.com/TucanaProtocol/Tucana/v8/testutil/network"
 )
 
 var (

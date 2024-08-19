@@ -7,7 +7,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/types/kv"
 
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 // NewDecodeStore returns a decoder function closure that unmarshals the KVPair's

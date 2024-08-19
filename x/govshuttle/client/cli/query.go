@@ -10,7 +10,7 @@ import (
 	// "github.com/cosmos/cosmos-sdk/client/flags"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module

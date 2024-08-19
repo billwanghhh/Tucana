@@ -19,8 +19,8 @@ import (
 
 	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 
-	"github.com/TucanaProtocol/Canto/v8/cmd/config"
-	"github.com/TucanaProtocol/Canto/v8/types"
+	"github.com/TucanaProtocol/Tucana/v8/cmd/config"
+	"github.com/TucanaProtocol/Tucana/v8/types"
 )
 
 func init() {

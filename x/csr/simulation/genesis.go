@@ -9,7 +9,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 )
 
 // DONTCOVER

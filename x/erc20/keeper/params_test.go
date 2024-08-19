@@ -1,6 +1,6 @@
 package keeper_test
 
-import "github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+import "github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 
 func (suite *KeeperTestSuite) TestParams() {
 	params := suite.app.Erc20Keeper.GetParams(suite.ctx)

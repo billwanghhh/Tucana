@@ -3,7 +3,7 @@ package simulation
 import (
 	"math/rand"
 
-	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/address"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"

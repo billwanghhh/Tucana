@@ -7,8 +7,8 @@ import (
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	cmdcfg "github.com/TucanaProtocol/Canto/v8/cmd/config"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	cmdcfg "github.com/TucanaProtocol/Tucana/v8/cmd/config"
 )
 
 func main() {

@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/TucanaProtocol/Canto/v8/x/csr/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/keeper"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
 	"github.com/evmos/ethermint/tests"
 	"github.com/stretchr/testify/require"
 
 	"github.com/cosmos/cosmos-sdk/types/kv"
 
-	"github.com/TucanaProtocol/Canto/v8/x/csr"
-	"github.com/TucanaProtocol/Canto/v8/x/csr/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 )
 
 func TestCsrStore(t *testing.T) {

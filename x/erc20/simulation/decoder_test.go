@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/TucanaProtocol/Canto/v8/x/erc20"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
 	"github.com/stretchr/testify/require"
 
 	"github.com/cosmos/cosmos-sdk/types/kv"
 	testutil "github.com/evmos/ethermint/tests"
 
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 func TestERC20Store(t *testing.T) {

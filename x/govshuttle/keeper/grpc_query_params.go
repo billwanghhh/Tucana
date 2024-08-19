@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

@@ -20,9 +20,9 @@ import (
 	"github.com/evmos/ethermint/server/config"
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	"github.com/TucanaProtocol/Canto/v8/testutil"
-	govshuttletypes "github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	"github.com/TucanaProtocol/Tucana/v8/testutil"
+	govshuttletypes "github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 )
 
 type ProposalResult struct {

@@ -3,8 +3,8 @@ package onboarding
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 // InitGenesis import module genesis

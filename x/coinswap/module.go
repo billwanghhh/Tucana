@@ -18,10 +18,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/client/cli"
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/client/cli"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 )
 
 var (

@@ -38,10 +38,10 @@ import (
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 	feemarkettypes "github.com/evmos/ethermint/x/feemarket/types"
 
-	"github.com/TucanaProtocol/Canto/v8/types"
-	coinswaptypes "github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
-	epochstypes "github.com/TucanaProtocol/Canto/v8/x/epochs/types"
-	inflationtypes "github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Tucana/v8/types"
+	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
+	epochstypes "github.com/TucanaProtocol/Tucana/v8/x/epochs/types"
+	inflationtypes "github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 )
 
 func TestCantoExport(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/TucanaProtocol/Canto/v8/x/epochs/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/epochs/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 )
 

@@ -11,8 +11,8 @@ import (
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 )
 
 func TestSwapSuite(t *testing.T) {

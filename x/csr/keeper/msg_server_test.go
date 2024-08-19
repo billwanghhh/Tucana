@@ -10,8 +10,8 @@ import (
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/TucanaProtocol/Canto/v8/testutil"
-	csrtypes "github.com/TucanaProtocol/Canto/v8/x/csr/types"
+	"github.com/TucanaProtocol/Tucana/v8/testutil"
+	csrtypes "github.com/TucanaProtocol/Tucana/v8/x/csr/types"
 )
 
 func (suite *KeeperTestSuite) TestMsgExecutionByProposal() {

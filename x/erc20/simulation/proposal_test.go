@@ -4,9 +4,9 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/TucanaProtocol/Canto/v8/app/params"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/app/params"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/address"
 	"github.com/stretchr/testify/require"

@@ -5,8 +5,8 @@ import (
 	"time"
 
 	sdkmath "cosmossdk.io/math"
-	epochstypes "github.com/TucanaProtocol/Canto/v8/x/epochs/types"
-	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	epochstypes "github.com/TucanaProtocol/Tucana/v8/x/epochs/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	bankKeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"

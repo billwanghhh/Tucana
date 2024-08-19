@@ -8,7 +8,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/kv"
 
-	"github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 )
 
 // NewDecodeStore returns a decoder function closure that unmarshals the KVPair's

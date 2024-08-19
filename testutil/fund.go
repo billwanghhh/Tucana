@@ -1,7 +1,7 @@
 package testutil
 
 import (
-	inflationtypes "github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	inflationtypes "github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 )

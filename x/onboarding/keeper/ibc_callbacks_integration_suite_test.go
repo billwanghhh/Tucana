@@ -19,13 +19,13 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
 	channeltypes "github.com/cosmos/ibc-go/v8/modules/core/04-channel/types"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	ibcgotesting "github.com/TucanaProtocol/Canto/v8/ibc/testing"
-	coinswaptypes "github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
-	erc20types "github.com/TucanaProtocol/Canto/v8/x/erc20/types"
-	inflationtypes "github.com/TucanaProtocol/Canto/v8/x/inflation/types"
-	onboardingtest "github.com/TucanaProtocol/Canto/v8/x/onboarding/testutil"
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	ibcgotesting "github.com/TucanaProtocol/Tucana/v8/ibc/testing"
+	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
+	erc20types "github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
+	inflationtypes "github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
+	onboardingtest "github.com/TucanaProtocol/Tucana/v8/x/onboarding/testutil"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 type IBCTestingSuite struct {

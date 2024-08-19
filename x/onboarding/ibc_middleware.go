@@ -9,8 +9,8 @@ import (
 	porttypes "github.com/cosmos/ibc-go/v8/modules/core/05-port/types"
 	"github.com/cosmos/ibc-go/v8/modules/core/exported"
 
-	"github.com/TucanaProtocol/Canto/v8/ibc"
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/ibc"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/keeper"
 )
 
 var _ porttypes.Middleware = &IBCMiddleware{}

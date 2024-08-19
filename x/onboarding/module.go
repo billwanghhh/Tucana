@@ -19,9 +19,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/client/cli"
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/client/cli"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 // type check to ensure the interface is properly implemented

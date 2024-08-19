@@ -11,9 +11,9 @@ import (
 	evmtypes "github.com/evmos/ethermint/x/evm/types"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/TucanaProtocol/Canto/v8/contracts"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/contracts"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 func (suite *KeeperTestSuite) TestQueryERC20() {

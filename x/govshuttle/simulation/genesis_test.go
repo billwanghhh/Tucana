@@ -13,8 +13,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/simulation"
-	"github.com/TucanaProtocol/Canto/v8/x/govshuttle/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/simulation"
+	"github.com/TucanaProtocol/Tucana/v8/x/govshuttle/types"
 )
 
 func TestRandomizedGenState(t *testing.T) {

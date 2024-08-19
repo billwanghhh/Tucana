@@ -5,8 +5,8 @@ import (
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/keeper"
-	"github.com/TucanaProtocol/Canto/v8/x/erc20/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/keeper"
+	"github.com/TucanaProtocol/Tucana/v8/x/erc20/types"
 )
 
 // InitGenesis import module genesis

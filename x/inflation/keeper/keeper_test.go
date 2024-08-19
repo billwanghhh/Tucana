@@ -22,9 +22,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	evm "github.com/evmos/ethermint/x/evm/types"
 
-	"github.com/TucanaProtocol/Canto/v8/app"
-	epochstypes "github.com/TucanaProtocol/Canto/v8/x/epochs/types"
-	"github.com/TucanaProtocol/Canto/v8/x/inflation/types"
+	"github.com/TucanaProtocol/Tucana/v8/app"
+	epochstypes "github.com/TucanaProtocol/Tucana/v8/x/epochs/types"
+	"github.com/TucanaProtocol/Tucana/v8/x/inflation/types"
 
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"

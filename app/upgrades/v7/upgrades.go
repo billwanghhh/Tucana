@@ -7,10 +7,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	coinswapkeeper "github.com/TucanaProtocol/Canto/v8/x/coinswap/keeper"
-	coinswaptypes "github.com/TucanaProtocol/Canto/v8/x/coinswap/types"
-	onboardingkeeper "github.com/TucanaProtocol/Canto/v8/x/onboarding/keeper"
-	onboardingtypes "github.com/TucanaProtocol/Canto/v8/x/onboarding/types"
+	coinswapkeeper "github.com/TucanaProtocol/Tucana/v8/x/coinswap/keeper"
+	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
+	onboardingkeeper "github.com/TucanaProtocol/Tucana/v8/x/onboarding/keeper"
+	onboardingtypes "github.com/TucanaProtocol/Tucana/v8/x/onboarding/types"
 )
 
 // CreateUpgradeHandler creates an SDK upgrade handler for v7
