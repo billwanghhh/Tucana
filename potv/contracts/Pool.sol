@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./interfaces/IConfig.sol";
 import "./interfaces/IUSD.sol";
 import "./interfaces/IPool.sol";
-contract Pool is Ownable, IPool {
-    using SafeERC20 for IERC20;
+
+contract Pool is Initializable, OwnableUpgradeable, IPool {
+    using SafeERC20Upgradeable for IERC20Upgradeable;
 
     IConfig public config;
     IUSD public usdToken;
@@ -34,7 +36,8 @@ contract Pool is Ownable, IPool {
         _;
     }
 
-    constructor(address _configAddress) {
+    function initialize(address _configAddress) public initializer {
+        __Ownable_init();
         config = IConfig(_configAddress);
     }
 
@@ -61,7 +64,7 @@ contract Pool is Ownable, IPool {
         userSupply[tokenAddress][user] -= amount;
         totalSupply[tokenAddress] -= amount;
 
-        IERC20(tokenAddress).safeTransfer(user, amount);
+        IERC20Upgradeable(tokenAddress).safeTransfer(user, amount);
 
         emit DecreaseToken(user, tokenAddress, amount);
     }

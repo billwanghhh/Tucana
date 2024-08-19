@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "./interfaces/IConfig.sol";
 import "./interfaces/IChain.sol";
-contract ChainContract is Ownable, IChain {
+
+contract ChainContract is Initializable, OwnableUpgradeable, IChain {
     using EnumerableSet for EnumerableSet.AddressSet;
 
     uint256 public constant PRECISION_DECIMALS = 6;
@@ -19,8 +21,8 @@ contract ChainContract is Ownable, IChain {
     mapping(address => mapping(address => uint256)) private validatorStakes;
     mapping(address => EnumerableSet.AddressSet) private validatorStakedUsers;
 
-   
-    constructor(address _configAddress)  {
+    function initialize(address _configAddress) public initializer {
+        __Ownable_init();
         config = IConfig(_configAddress);
     }
 
@@ -111,7 +113,6 @@ contract ChainContract is Ownable, IChain {
     function getValidators() external view returns (address[] memory) {
         return validators.values();
     }
-
 
     function containsValidator(address validator) external view returns (bool) {
         return validators.contains(validator);

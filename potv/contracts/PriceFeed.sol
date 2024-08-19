@@ -1,21 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-
-
-contract PriceFeed is Ownable {
+contract PriceFeed is Initializable, OwnableUpgradeable {
 
     mapping (address => uint256) public answers;
     mapping(address => uint256) public lastUpdated;
     uint256 public constant PRICE_DECIMALS = 6;
 
-
-
-    constructor() {
-
+    function initialize() public initializer {
+        __Ownable_init();
     }
     
     function setTokenPrices(address[] memory tokens, uint256[] memory prices) public onlyOwner {

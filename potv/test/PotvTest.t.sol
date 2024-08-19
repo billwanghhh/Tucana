@@ -41,13 +41,26 @@ contract PotvTest is Test {
         validators[1] = address(0x4);
         vm.startPrank(owner);   
         // Deploy contracts
-        config = new Config( 1500000, 1100000);
-        chainContract = new ChainContract(address(config));
+        config = new Config();
+        config.initialize(1500000, 1100000);
+        
+        chainContract = new ChainContract();
+        chainContract.initialize(address(config));
+        
         priceFeed = new PriceFeed();
-        pool = new Pool(address(config));
-        usd = new USD(address(pool));
-        reward = new Reward(address(config), address(0), address(chainContract));
-        lend = new Lend(address(chainContract), address(pool), address(config), address(reward), address(priceFeed),address(usd));
+        priceFeed.initialize();
+        
+        pool = new Pool();
+        pool.initialize(address(config));
+        
+        usd = new USD();
+        usd.initialize(address(pool));
+        
+        reward = new Reward();
+        reward.initialize(address(config), address(0), address(chainContract));
+        
+        lend = new Lend();
+        lend.initialize(address(chainContract), address(pool), address(config), address(reward), address(priceFeed), address(usd));
 
         pool.setLendContract(address(lend));
         chainContract.setLendContract(address(lend));

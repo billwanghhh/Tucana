@@ -1,22 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "./interfaces/IConfig.sol";
-contract Config is Ownable, IConfig {
+
+contract Config is Initializable, OwnableUpgradeable, IConfig {
     using EnumerableSet for EnumerableSet.AddressSet;
 
     uint256 public constant PRECISION_DECIMALS = 6;
-
 
     EnumerableSet.AddressSet private _collateralTokens;
     uint256 public mcr;
     uint256 public liquidationRate;
 
-
-    constructor(uint256 _mcr, uint256 _liquidationRate) {
+    function initialize(uint256 _mcr, uint256 _liquidationRate) public initializer {
+        __Ownable_init();
         mcr = _mcr;
         liquidationRate = _liquidationRate;
     }
@@ -55,7 +56,6 @@ contract Config is Ownable, IConfig {
         return _collateralTokens.values();
     }
 
-  
     function getMCR() external view returns (uint256) {
         return mcr;
     }

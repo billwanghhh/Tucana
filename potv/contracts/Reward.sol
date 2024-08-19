@@ -1,19 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./interfaces/IConfig.sol";
 import "./interfaces/IChain.sol";
 import "./interfaces/IReward.sol";
-contract Reward is Ownable, IReward {
-    using SafeERC20 for IERC20;
+
+contract Reward is Initializable, OwnableUpgradeable, IReward {
+    using SafeERC20Upgradeable for IERC20Upgradeable;
 
     mapping(address => mapping(address => uint256)) private rewardPerTokenStored;
     mapping(address => mapping(address => mapping(address => uint256))) private userRewardPerTokenPaid;
     mapping(address => uint256) private rewards;
-    IERC20 public rewardToken;
+    IERC20Upgradeable public rewardToken;
     IConfig public config;
     IChain public chain;
     address public lendAddress;
@@ -23,9 +25,10 @@ contract Reward is Ownable, IReward {
         _;
     }
 
-    constructor(address _configAddress, address _rewardToken, address _chainAddress)  {
+    function initialize(address _configAddress, address _rewardToken, address _chainAddress) public initializer {
+        __Ownable_init();
         config = IConfig(_configAddress);
-        rewardToken = IERC20(_rewardToken);
+        rewardToken = IERC20Upgradeable(_rewardToken);
         chain = IChain(_chainAddress);
     }
     
@@ -34,7 +37,7 @@ contract Reward is Ownable, IReward {
     }
     
     function setRewardToken(address _rewardToken) external onlyOwner {
-        rewardToken = IERC20(_rewardToken);
+        rewardToken = IERC20Upgradeable(_rewardToken);
     }
 
     function updateReward(address user) public {

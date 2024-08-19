@@ -2,6 +2,8 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-foundry";
 import * as dotenv from "dotenv";
+import "@openzeppelin/hardhat-upgrades";
+
 dotenv.config();
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '';
 const config: HardhatUserConfig = {

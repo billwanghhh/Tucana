@@ -1,18 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
-import  "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./interfaces/IPool.sol";
 
-
-contract USD is ERC20, Ownable {
+contract USD is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     IPool public pool;
 
-    constructor(address _poolAddress) ERC20("USD", "USD")  {
+    function initialize(address _poolAddress) public initializer {
+        __ERC20_init("USD", "USD");
+        __Ownable_init();
         pool = IPool(_poolAddress);
     }
-
-
 
     function setPool(address _poolAddress) external onlyOwner {
         pool = IPool(_poolAddress);
@@ -27,5 +27,4 @@ contract USD is ERC20, Ownable {
         require(msg.sender == address(pool), "Only pool can burn");
         _burn(from, amount);
     }
-
 }

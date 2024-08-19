@@ -6,11 +6,13 @@ import "./interfaces/IPool.sol";
 import "./interfaces/IConfig.sol";
 import "./interfaces/IReward.sol";
 import "./interfaces/IPriceFeed.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-contract Lend is Ownable {
+
+contract Lend is Initializable, OwnableUpgradeable {
     using SafeERC20 for IERC20;
     IChain public chain;
     IPool public pool;
@@ -25,7 +27,15 @@ contract Lend is Ownable {
     event RepayEvent(address indexed account, uint256 amount);
     event LiquidateEvent(address indexed liquidator, address indexed liquidatedUser, uint256 repayAmount);
 
-    constructor(address _chainAddress, address _poolAddress, address _configAddress, address _rewardAddress, address _priceFeedAddress, address _usdAddress)  {
+    function initialize(
+        address _chainAddress,
+        address _poolAddress,
+        address _configAddress,
+        address _rewardAddress,
+        address _priceFeedAddress,
+        address _usdAddress
+    ) public initializer {
+        __Ownable_init();
         chain = IChain(_chainAddress);
         pool = IPool(_poolAddress);
         config = IConfig(_configAddress);
@@ -80,7 +90,6 @@ contract Lend is Ownable {
     }
 
     function migrateStakes(address deletedValidator, address newValidator) external onlyOwner {
-
         require(chain.containsValidator(deletedValidator), "Lend: Invalid validator");
         uint256 migrateStakeLimit = chain.getMigrateStakeLimit();
 
@@ -94,7 +103,6 @@ contract Lend is Ownable {
         
         chain.migrateStakes(deletedValidator, newValidator, deleteAmount);
     }
-
 
     function getTokenMaxWithdrawable(address user, address tokenType) public view returns (uint256) {
         uint256 borrowUSD = getUserBorrowTotalUSD(user);
@@ -112,7 +120,6 @@ contract Lend is Ownable {
         return userSupplyAmount - minCollateralAmount;
     }
 
-
     function getUserCollateralRatio(address user) public view returns (uint256) {
         uint256 precisionDecimals = config.getPrecision();
         uint256 precision = 10 ** precisionDecimals;
@@ -123,7 +130,7 @@ contract Lend is Ownable {
     }
 
     // supply value = usdvalue * 10 ** systemDecimals
-    function  getUserSupplyTotalUSD(address user) public view returns (uint256) {
+    function getUserSupplyTotalUSD(address user) public view returns (uint256) {
         address[] memory whitelistTokens = config.getAllWhitelistTokens();
         uint256 usdValue = 0;
         for (uint256 i = 0; i < whitelistTokens.length; i++) {
@@ -135,6 +142,7 @@ contract Lend is Ownable {
         }
         return usdValue;
     }
+
     //borrow value = usdvalue * 10 ** systemDecimals
     function getUserBorrowTotalUSD(address user) public view returns (uint256) {
         uint256 userTokenBorrow = pool.getUserTotalBorrow(user);
@@ -142,6 +150,7 @@ contract Lend is Ownable {
         uint256 systemPriceDecimals = config.getPrecision();
         return userTokenBorrow * 10 ** systemPriceDecimals / 10 ** usdDecimals;
     }
+
     // price = usdValue * 10 ** systemDecimals 
     function getTokenPrice(address tokenType) public view returns (uint256) {
         uint256 price = priceFeed.latestAnswer(tokenType);
