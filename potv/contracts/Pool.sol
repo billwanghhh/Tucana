@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -30,11 +30,11 @@ contract Pool is Ownable, IPool {
 
 
      modifier onlyLend() {
-        require(msg.sender == lendContract, "Only Lend contract can call this function");
+        require(msg.sender == lendContract, "Pool: Only Lend contract can call this function");
         _;
     }
 
-    constructor(address _configAddress) Ownable(msg.sender) {
+    constructor(address _configAddress) {
         config = IConfig(_configAddress);
     }
 
@@ -48,7 +48,7 @@ contract Pool is Ownable, IPool {
     }
 
     function increasePoolToken(address user,address tokenAddress, uint256 amount) external onlyLend {
-        require(config.isWhitelistToken(tokenAddress), "Not a whitelisted token");
+        require(config.isWhitelistToken(tokenAddress), "Pool: Not a whitelisted token");
         userSupply[tokenAddress][user] += amount;
         totalSupply[tokenAddress] += amount;
 
@@ -56,7 +56,7 @@ contract Pool is Ownable, IPool {
     }
 
     function decreasePoolToken(address user,address tokenAddress, uint256 amount) external onlyLend {
-        require(userSupply[tokenAddress][user] >= amount, "Insufficient balance");
+        require(userSupply[tokenAddress][user] >= amount, "Pool: Insufficient balance");
 
         userSupply[tokenAddress][user] -= amount;
         totalSupply[tokenAddress] -= amount;
@@ -88,7 +88,7 @@ contract Pool is Ownable, IPool {
     }
 
     function repayUSD(address repayer, address repaidUser, uint256 amount) external onlyLend {
-        require(userBorrow[repaidUser] >= amount, "Exceed borrow amount");
+        require(userBorrow[repaidUser] >= amount, "Pool: Exceed borrow amount");
         userBorrow[repaidUser] -= amount;
         totalBorrow -= amount;
         usdToken.burn(repayer, amount);

@@ -37,7 +37,7 @@ async function main() {
   await setUsdAddress.wait();
 
   //usd set pool address
-  const usd = await ethers.getContractAt("Usd", ContractAdds.USD);
+  const usd = await ethers.getContractAt("USD", ContractAdds.USD);
   const setPoolAddress = await usd.setPool(ContractAdds.Pool);
   await setPoolAddress.wait();
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
@@ -16,19 +16,19 @@ contract Config is Ownable, IConfig {
     uint256 public liquidationRate;
 
 
-    constructor(uint256 _mcr, uint256 _liquidationRate) Ownable(msg.sender) {
+    constructor(uint256 _mcr, uint256 _liquidationRate) {
         mcr = _mcr;
         liquidationRate = _liquidationRate;
     }
 
     function addCollateral(address tokenType) external onlyOwner {
-        require(!_collateralTokens.contains(tokenType), "ECollateralAlreadyExist");
+        require(!_collateralTokens.contains(tokenType), "Config: Collateral already exist");
         _collateralTokens.add(tokenType);
         emit CollateralAdded(tokenType);
     }
 
     function disableCollateral(address tokenType) external onlyOwner {
-        require(_collateralTokens.contains(tokenType), "ENotCollateral");
+        require(_collateralTokens.contains(tokenType), "Config: Not collateral");
         _collateralTokens.remove(tokenType);
         emit CollateralDisabled(tokenType);
     }

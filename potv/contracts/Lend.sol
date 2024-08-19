@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.19;
 
 import "./interfaces/IChain.sol";
 import "./interfaces/IPool.sol";
@@ -25,7 +25,7 @@ contract Lend is Ownable {
     event RepayEvent(address indexed account, uint256 amount);
     event LiquidateEvent(address indexed liquidator, address indexed liquidatedUser, uint256 repayAmount);
 
-    constructor(address _chainAddress, address _poolAddress, address _configAddress, address _rewardAddress, address _priceFeedAddress, address _usdAddress) Ownable(msg.sender) {
+    constructor(address _chainAddress, address _poolAddress, address _configAddress, address _rewardAddress, address _priceFeedAddress, address _usdAddress)  {
         chain = IChain(_chainAddress);
         pool = IPool(_poolAddress);
         config = IConfig(_configAddress);
@@ -36,19 +36,17 @@ contract Lend is Ownable {
 
     function supply(address tokenType, uint256 amount, address validator) external {
         reward.updateReward(msg.sender);
-        require(config.isWhitelistToken(tokenType), "ENotWhiteListToken");
+        require(config.isWhitelistToken(tokenType), "Lend: Not whitelisted token");
         IERC20(tokenType).safeTransferFrom(msg.sender, address(pool), amount);
-        pool.increasePoolToken(msg.sender, tokenType, amount);
-        chain.stakeToken(msg.sender, validator, tokenType, amount);
+        _increaseAndStake(msg.sender, tokenType, amount, validator);
         emit IncreaseSupplyEvent(msg.sender, tokenType, amount, validator);
     }
 
     function withdraw(address tokenType, uint256 amount, address validator) external {
         reward.updateReward(msg.sender);
         uint256 maxWithdrawable = getTokenMaxWithdrawable(msg.sender, tokenType);
-        require(amount <= maxWithdrawable, "EExceedWithdrawAmount");
-        pool.decreasePoolToken(msg.sender, tokenType, amount);
-        chain.unstakeToken(msg.sender, validator, tokenType, amount);
+        require(amount <= maxWithdrawable, "Lend: Exceed withdraw amount");
+        _decreaseAndUnstake(msg.sender, tokenType, amount, validator);
         emit DecreaseSupplyEvent(msg.sender, tokenType, amount, validator);
     }
 
@@ -56,7 +54,7 @@ contract Lend is Ownable {
         pool.borrowUSD(msg.sender, amount);
         uint256 userCollateralRatio = getUserCollateralRatio(msg.sender);
         uint256 systemMCR = config.getMCR();
-        require(userCollateralRatio > systemMCR, "ELowerThanMCR");
+        require(userCollateralRatio > systemMCR, "Lend: Lower than MCR");
         emit IncreaseBorrowEvent(msg.sender, amount);
     }
 
@@ -66,10 +64,10 @@ contract Lend is Ownable {
     }
 
     function liquidate(address liquidatedUser) external {
-        require(msg.sender != liquidatedUser, "EInvalidLiquidator");
+        require(msg.sender != liquidatedUser, "Lend: Invalid liquidator");
         uint256 userCollateralRatio = getUserCollateralRatio(liquidatedUser);
         uint256 systemLiquidateRate = config.liquidationRate();
-        require(systemLiquidateRate >= userCollateralRatio, "ELargerThanLiquidateRate");
+        require(systemLiquidateRate >= userCollateralRatio, "Lend: Larger than liquidation rate");
 
         reward.updateReward(liquidatedUser);
         reward.updateReward(msg.sender);
@@ -83,7 +81,7 @@ contract Lend is Ownable {
 
     function migrateStakes(address deletedValidator, address newValidator) external onlyOwner {
 
-        require(chain.containsValidator(deletedValidator), "EInvalidValidator");
+        require(chain.containsValidator(deletedValidator), "Lend: Invalid validator");
         uint256 migrateStakeLimit = chain.getMigrateStakeLimit();
 
         address[] memory validatorStakedUsers = chain.getValidatorStakedUsers(deletedValidator);
@@ -155,5 +153,15 @@ contract Lend is Ownable {
             price = price / (10 ** (decimals - systemDecimals));
         }
         return price;
+    }
+
+    function _increaseAndStake(address user, address tokenType, uint256 amount, address validator) internal {
+        pool.increasePoolToken(user, tokenType, amount);
+        chain.stakeToken(user, validator, tokenType, amount);
+    }
+
+    function _decreaseAndUnstake(address user, address tokenType, uint256 amount, address validator) internal {
+        pool.decreasePoolToken(user, tokenType, amount);
+        chain.unstakeToken(user, validator, tokenType, amount);
     }
 }

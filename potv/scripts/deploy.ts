@@ -38,7 +38,7 @@ async function main() {
   deployedContracts["Pool"] = poolAddress;
 
   // Deploy USD
-  const Usd = await ethers.getContractFactory("Usd");
+  const Usd = await ethers.getContractFactory("USD");
   const { address: usdAddress } = await deployContract("USD", Usd, poolAddress);
   deployedContracts["USD"] = usdAddress;
 

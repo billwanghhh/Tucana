@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
@@ -20,12 +20,12 @@ contract ChainContract is Ownable, IChain {
     mapping(address => EnumerableSet.AddressSet) private validatorStakedUsers;
 
    
-    constructor(address _configAddress) Ownable(msg.sender) {
+    constructor(address _configAddress)  {
         config = IConfig(_configAddress);
     }
 
     modifier onlyLend() {
-        require(msg.sender == lendContract, "Only Lend contract can call this function");
+        require(msg.sender == lendContract, "ChainContract: Only Lend contract can call this function");
         _;
     }
 
@@ -43,14 +43,14 @@ contract ChainContract is Ownable, IChain {
     }
 
     function stakeToken(address user, address validator, address tokenType, uint256 amount) external onlyLend {
-        require(validators.contains(validator), "Invalid validator");
+        require(validators.contains(validator), "ChainContract: Invalid validator");
         userStakes[user][validator][tokenType] += amount;
         validatorStakes[validator][tokenType] += amount;
         validatorStakedUsers[validator].add(user);
     }
 
     function unstakeToken(address user, address validator, address tokenType, uint256 amount) external onlyLend {
-        require(userStakes[user][validator][tokenType] >= amount, "Insufficient stake");
+        require(userStakes[user][validator][tokenType] >= amount, "ChainContract: Insufficient stake");
         userStakes[user][validator][tokenType] -= amount;
         validatorStakes[validator][tokenType] -= amount;
         if (userStakes[user][validator][tokenType] == 0) {
@@ -75,7 +75,7 @@ contract ChainContract is Ownable, IChain {
     }
 
     function migrateStakes(address deletedValidator, address newValidator, uint256 deleteAmount) external onlyLend {
-        require(deleteAmount <= MIGRATE_STAKE_LIMIT, "Exceeds migration limit");
+        require(deleteAmount <= MIGRATE_STAKE_LIMIT, "ChainContract: Exceeds migration limit");
         if (!validators.contains(newValidator)) {
             validators.add(newValidator);
         }

@@ -8,7 +8,7 @@ import "../contracts/ChainContract.sol";
 import "../contracts/Pool.sol";
 import "../contracts/Reward.sol";
 import "../contracts/Lend.sol";
-import "../contracts/Usd.sol";
+import "../contracts/USD.sol";
 import "../contracts/test/MockToken.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -22,7 +22,7 @@ contract PotvTest is Test {
     Pool public pool;
     Reward public reward;
     Lend public lend;
-    Usd public usd;
+    USD public usd;
     MockToken public collateral1;
     MockToken public collateral2;
     MockToken public rewardToken;
@@ -45,7 +45,7 @@ contract PotvTest is Test {
         chainContract = new ChainContract(address(config));
         priceFeed = new PriceFeed();
         pool = new Pool(address(config));
-        usd = new Usd(address(pool));
+        usd = new USD(address(pool));
         reward = new Reward(address(config), address(0), address(chainContract));
         lend = new Lend(address(chainContract), address(pool), address(config), address(reward), address(priceFeed),address(usd));
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -19,11 +19,11 @@ contract Reward is Ownable, IReward {
     address public lendAddress;
 
     modifier onlyLend() {
-        require(msg.sender == lendAddress, "Only lend contract can call this function");
+        require(msg.sender == lendAddress, "Reward: Only lend contract can call this function");
         _;
     }
 
-    constructor(address _configAddress, address _rewardToken, address _chainAddress) Ownable(msg.sender) {
+    constructor(address _configAddress, address _rewardToken, address _chainAddress)  {
         config = IConfig(_configAddress);
         rewardToken = IERC20(_rewardToken);
         chain = IChain(_chainAddress);
@@ -88,11 +88,11 @@ contract Reward is Ownable, IReward {
         address[] memory lpTokens,
         uint256[][] memory rewardAmounts
     ) external onlyOwner {
-        require(rewardAmounts.length == validators.length, "Length mismatch: validators");
+        require(rewardAmounts.length == validators.length, "Reward: Length mismatch validators");
         uint256 totalRewardAmount = 0;
 
         for (uint256 i = 0; i < validators.length; i++) {
-            require(rewardAmounts[i].length == lpTokens.length, "Length mismatch: lpTokens");
+            require(rewardAmounts[i].length == lpTokens.length, "Reward: Length mismatch lpTokens");
             for (uint256 j = 0; j < lpTokens.length; j++) {
                 uint256 rewardAmount = rewardAmounts[i][j];
                 address validator = validators[i];
