@@ -826,6 +826,7 @@ func NewCanto(
 	)
 
 	// NOTE: fee market module must go last in order to retrieve the block gas used.
+	// todo: register the potv module
 	app.ModuleManager.SetOrderEndBlockers(
 		crisistypes.ModuleName,
 		govtypes.ModuleName,
