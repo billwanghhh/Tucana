@@ -27,15 +27,15 @@ tucd keys add $KEY1 --keyring-backend $KEYRING --algo $KEYALGO
 # Set moniker and chain-id for tuc (Moniker can be anything, chain-id must be an integer)
 tucd init $MONIKER --chain-id $CHAINID
 
-# Change parameter token denominations to utuc
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["coinswap"]["params"]["pool_creation_fee"]["denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["coinswap"]["standard_denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["gov"]["params"]["min_deposit"][0]["denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["gov"]["params"]["expedited_min_deposit"][0]["denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["evm"]["params"]["evm_denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
-cat $HOME/.tucd/config/genesis.json | jq '.app_state["inflation"]["params"]["mint_denom"]="utuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+# Change parameter token denominations to atuc
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["staking"]["params"]["bond_denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["crisis"]["constant_fee"]["denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["coinswap"]["params"]["pool_creation_fee"]["denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["coinswap"]["standard_denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["gov"]["params"]["min_deposit"][0]["denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["gov"]["params"]["expedited_min_deposit"][0]["denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["evm"]["params"]["evm_denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+cat $HOME/.tucd/config/genesis.json | jq '.app_state["inflation"]["params"]["mint_denom"]="atuc"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
 
 # Set gas limit in genesis
 cat $HOME/.tucd/config/genesis.json | jq '.consensus["params"]["block"]["max_gas"]="10000000"' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
@@ -55,7 +55,7 @@ cat $HOME/.tucd/config/genesis.json | jq '.consensus["params"]["block"]["max_gas
 
 # # Claim module account:
 # # 0xA61808Fe40fEb8B3433778BBC2ecECCAA47c8c47 || tuc15cvq3ljql6utxseh0zau9m8ve2j8erz89c67dp
-# cat $HOME/.tucd/config/genesis.json | jq -r --arg amount_to_claim "$amount_to_claim" '.app_state["bank"]["balances"] += [{"address":"tuc15cvq3ljql6utxseh0zau9m8ve2j8erz89c67dp","coins":[{"denom":"utuc", "amount":$amount_to_claim}]}]' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
+# cat $HOME/.tucd/config/genesis.json | jq -r --arg amount_to_claim "$amount_to_claim" '.app_state["bank"]["balances"] += [{"address":"tuc15cvq3ljql6utxseh0zau9m8ve2j8erz89c67dp","coins":[{"denom":"atuc", "amount":$amount_to_claim}]}]' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
 
 # disable produce empty block
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -89,8 +89,8 @@ if [[ $1 == "pending" ]]; then
 fi
 
 # Allocate genesis accounts (cosmos formatted addresses)
-tucd add-genesis-account $KEY 100000000000000000000010000utuc --keyring-backend $KEYRING
-tucd add-genesis-account $KEY1 100000000000000000000000000utuc --keyring-backend $KEYRING
+tucd add-genesis-account $KEY 100000000000000000000010000atuc --keyring-backend $KEYRING
+tucd add-genesis-account $KEY1 100000000000000000000000000atuc --keyring-backend $KEYRING
 
 # Update total supply with claim values
 validators_supply=$(cat $HOME/.tucd/config/genesis.json | jq -r '.app_state["bank"]["supply"][0]["amount"]')
@@ -100,7 +100,7 @@ total_supply=200000000000000000000010000
 cat $HOME/.tucd/config/genesis.json | jq -r --arg total_supply "$total_supply" '.app_state["bank"]["supply"][0]["amount"]=$total_supply' > $HOME/.tucd/config/tmp_genesis.json && mv $HOME/.tucd/config/tmp_genesis.json $HOME/.tucd/config/genesis.json
 
 # Sign genesis transaction
-tucd gentx $KEY 1000000000000000000000utuc --keyring-backend $KEYRING --chain-id $CHAINID
+tucd gentx $KEY 1000000000000000000000atuc --keyring-backend $KEYRING --chain-id $CHAINID
 
 # Collect genesis tx
 tucd collect-gentxs
@@ -113,4 +113,4 @@ if [[ $1 == "pending" ]]; then
 fi
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-tucd start --pruning=nothing $TRACE --log_level $LOGLEVEL --minimum-gas-prices=0.0001utuc --json-rpc.api eth,txpool,personal,net,debug,web3 --rpc.laddr "tcp://0.0.0.0:26657" --api.enable --chain-id $CHAINID
+tucd start --pruning=nothing $TRACE --log_level $LOGLEVEL --minimum-gas-prices=0.0001atuc --json-rpc.api eth,txpool,personal,net,debug,web3 --rpc.laddr "tcp://0.0.0.0:26657" --api.enable --chain-id $CHAINID

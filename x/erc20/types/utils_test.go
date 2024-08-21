@@ -59,14 +59,14 @@ func TestEqualMetadata(t *testing.T) {
 		{
 			"equal metadata",
 			banktypes.Metadata{
-				Base:        "utuc",
+				Base:        "atuc",
 				Display:     "canto",
 				Name:        "canto",
 				Symbol:      "canto",
 				Description: "EVM, staking and governance denom of canto",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
-						Denom:    "utuc",
+						Denom:    "atuc",
 						Exponent: 0,
 						Aliases:  []string{"atto canto"},
 					},
@@ -77,14 +77,14 @@ func TestEqualMetadata(t *testing.T) {
 				},
 			},
 			banktypes.Metadata{
-				Base:        "utuc",
+				Base:        "atuc",
 				Display:     "canto",
 				Name:        "canto",
 				Symbol:      "canto",
 				Description: "EVM, staking and governance denom of canto",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
-						Denom:    "utuc",
+						Denom:    "atuc",
 						Exponent: 0,
 						Aliases:  []string{"atto canto"},
 					},
@@ -99,24 +99,24 @@ func TestEqualMetadata(t *testing.T) {
 		{
 			"different base field",
 			banktypes.Metadata{
-				Base: "utuc",
+				Base: "atuc",
 			},
 			banktypes.Metadata{
-				Base: "tutuc",
+				Base: "tatuc",
 			},
 			true,
 		},
 		{
 			"different denom units length",
 			banktypes.Metadata{
-				Base:        "utuc",
+				Base:        "atuc",
 				Display:     "canto",
 				Name:        "canto",
 				Symbol:      "canto",
 				Description: "EVM, staking and governance denom of canto",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
-						Denom:    "utuc",
+						Denom:    "atuc",
 						Exponent: 0,
 						Aliases:  []string{"atto canto"},
 					},
@@ -127,14 +127,14 @@ func TestEqualMetadata(t *testing.T) {
 				},
 			},
 			banktypes.Metadata{
-				Base:        "utuc",
+				Base:        "atuc",
 				Display:     "canto",
 				Name:        "canto",
 				Symbol:      "canto",
 				Description: "EVM, staking and governance denom of canto",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
-						Denom:    "utuc",
+						Denom:    "atuc",
 						Exponent: 0,
 						Aliases:  []string{"atto canto"},
 					},
@@ -145,14 +145,14 @@ func TestEqualMetadata(t *testing.T) {
 		{
 			"different denom units",
 			banktypes.Metadata{
-				Base:        "utuc",
+				Base:        "atuc",
 				Display:     "canto",
 				Name:        "canto",
 				Symbol:      "canto",
 				Description: "EVM, staking and governance denom of canto",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
-						Denom:    "utuc",
+						Denom:    "atuc",
 						Exponent: 0,
 						Aliases:  []string{"atto canto"},
 					},
@@ -168,14 +168,14 @@ func TestEqualMetadata(t *testing.T) {
 				},
 			},
 			banktypes.Metadata{
-				Base:        "utuc",
+				Base:        "atuc",
 				Display:     "canto",
 				Name:        "canto",
 				Symbol:      "canto",
 				Description: "EVM, staking and governance denom of canto",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
-						Denom:    "utuc",
+						Denom:    "atuc",
 						Exponent: 0,
 						Aliases:  []string{"atto canto"},
 					},
@@ -231,14 +231,14 @@ func TestEqualAliases(t *testing.T) {
 		},
 		{
 			"same values, unsorted",
-			[]string{"atto canto", "utuc"},
-			[]string{"utuc", "atto canto"},
+			[]string{"atto canto", "atuc"},
+			[]string{"atuc", "atto canto"},
 			false,
 		},
 		{
 			"same values, sorted",
-			[]string{"utuc", "atto canto"},
-			[]string{"utuc", "atto canto"},
+			[]string{"atuc", "atto canto"},
+			[]string{"atuc", "atto canto"},
 			true,
 		},
 	}

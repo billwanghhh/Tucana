@@ -86,7 +86,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 
 	stakingParams, err := suite.app.StakingKeeper.GetParams(suite.ctx)
 	suite.NoError(err)
-	stakingParams.BondDenom = "utuc"
+	stakingParams.BondDenom = "atuc"
 	suite.app.StakingKeeper.SetParams(suite.ctx, stakingParams)
 }
 
