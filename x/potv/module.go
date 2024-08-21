@@ -1,3 +1,3 @@
 package potv
 
-// 4. register appmodule
+// todo 4. register appmodule

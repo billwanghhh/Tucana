@@ -1,4 +1,4 @@
 package keeper
 
-//1. 建立endblocker
-// 参照其它的文件夹
+//1. todo: build the endblocker
+//  demo: inflation
