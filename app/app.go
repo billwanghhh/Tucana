@@ -164,6 +164,8 @@ import (
 	coinswapkeeper "github.com/TucanaProtocol/Tucana/v8/x/coinswap/keeper"
 	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 
+	potvtypes "github.com/TucanaProtocol/Tucana/v8/x/potv/types"
+
 	v2 "github.com/TucanaProtocol/Tucana/v8/app/upgrades/v2"
 	v3 "github.com/TucanaProtocol/Tucana/v8/app/upgrades/v3"
 	v4 "github.com/TucanaProtocol/Tucana/v8/app/upgrades/v4"
@@ -823,6 +825,8 @@ func NewCanto(
 		onboardingtypes.ModuleName,
 		govshuttletypes.ModuleName,
 		coinswaptypes.ModuleName,
+		//	potv
+		potvtypes.ModuleName,
 	)
 
 	// NOTE: fee market module must go last in order to retrieve the block gas used.
