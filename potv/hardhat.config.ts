@@ -17,6 +17,10 @@ const config: HardhatUserConfig = {
       url: "https://arb-sepolia.g.alchemy.com/v2/I-ZVEdUQy4Mk3rwbsNAIp_MVql6coseO",
       accounts: [PRIVATE_KEY]
     },
+    "localhost": {
+      url: "http://localhost:8545",
+      accounts: [PRIVATE_KEY]
+    },
   }
 };
 
