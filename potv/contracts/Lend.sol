@@ -8,11 +8,12 @@ import "./interfaces/IReward.sol";
 import "./interfaces/IPriceFeed.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-contract Lend is Initializable, OwnableUpgradeable {
+contract Lend is Initializable, OwnableUpgradeable, PausableUpgradeable {
     using SafeERC20 for IERC20;
     IChain public chain;
     IPool public pool;
@@ -45,6 +46,7 @@ contract Lend is Initializable, OwnableUpgradeable {
         address _usdAddress
     ) public initializer {
         __Ownable_init();
+        __Pausable_init();
         chain = IChain(_chainAddress);
         pool = IPool(_poolAddress);
         config = IConfig(_configAddress);
@@ -73,7 +75,7 @@ contract Lend is Initializable, OwnableUpgradeable {
      * - Pool.sol: Increases the user's token supply in the pool.
      * - ChainContract.sol: Stakes the tokens with the specified validator.
      */
-    function supply(address tokenType, uint256 amount, address validator) external {
+    function supply(address tokenType, uint256 amount, address validator) external whenNotPaused {
         reward.updateReward(msg.sender);
         require(config.isWhitelistToken(tokenType), "Lend: Not whitelisted token");
         IERC20(tokenType).safeTransferFrom(msg.sender, address(pool), amount);
@@ -100,7 +102,7 @@ contract Lend is Initializable, OwnableUpgradeable {
      * - Pool.sol: Decreases the user's token supply in the pool.
      * - ChainContract.sol: Unstakes the tokens from the specified validator.
      */
-    function withdraw(address tokenType, uint256 amount, address validator) external {
+    function withdraw(address tokenType, uint256 amount, address validator) external whenNotPaused {
         reward.updateReward(msg.sender);
         uint256 maxWithdrawable = getTokenMaxWithdrawable(msg.sender, tokenType);
         require(amount <= maxWithdrawable, "Lend: Exceed withdraw amount");
@@ -122,7 +124,7 @@ contract Lend is Initializable, OwnableUpgradeable {
      *
      * @param amount The amount of USD tokens to borrow.
      */
-    function borrow(uint256 amount) external {
+    function borrow(uint256 amount) external whenNotPaused {
         pool.borrowUSD(msg.sender, amount);
         uint256 userCollateralRatio = getUserCollateralRatio(msg.sender);
         uint256 systemMCR = config.getMCR();
@@ -139,7 +141,7 @@ contract Lend is Initializable, OwnableUpgradeable {
      *    - Burns the repaid USD tokens from the repayer
      * 2. Emits a RepayEvent to log the repayment
      */
-    function repay(uint256 amount) external {
+    function repay(uint256 amount) external whenNotPaused {
        
         pool.repayUSD(msg.sender, msg.sender, amount);
 
@@ -172,7 +174,7 @@ contract Lend is Initializable, OwnableUpgradeable {
      *
      * @param liquidatedUser The address of the user whose position is being liquidated.
      */
-    function liquidate(address liquidatedUser) external {
+    function liquidate(address liquidatedUser) external whenNotPaused {
         require(msg.sender != liquidatedUser, "Lend: Invalid liquidator");
         uint256 userCollateralRatio = getUserCollateralRatio(liquidatedUser);
         uint256 systemLiquidateRate = config.liquidationRate();
@@ -216,7 +218,7 @@ contract Lend is Initializable, OwnableUpgradeable {
      * @param deletedValidator The address of the deleted validator.
      * @param newValidator The address of the new validator.
      **/
-    function migrateStakes(address deletedValidator, address newValidator) external onlyOwner {
+    function migrateStakes(address deletedValidator, address newValidator) external onlyOwner whenNotPaused {
         require(chain.containsValidator(deletedValidator), "Lend: Invalid validator");
         uint256 migrateStakeLimit = chain.getMigrateStakeLimit();
 
