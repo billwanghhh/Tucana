@@ -18,8 +18,8 @@ async function main() {
     console.log("Supply successful", tx.hash);
 
     const tx1 = await lend.withdraw(ContractAdds.Collateral_1, ethers.parseEther('1'), validator1);
-    await tx.wait();
-    console.log("Supply successful", tx.hash);
+    await tx1.wait();
+    console.log("Supply successful", tx1.hash);
 
 
 
