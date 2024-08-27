@@ -16,10 +16,13 @@ async function main() {
     const tx = await lend.supply(ContractAdds.Collateral_1, ethers.parseEther('10'), validator1);
     await tx.wait();
     console.log("Supply successful", tx.hash);
-    
-    
 
-  
+    const tx1 = await lend.withdraw(ContractAdds.Collateral_1, ethers.parseEther('1'), validator1);
+    await tx.wait();
+    console.log("Supply successful", tx.hash);
+
+
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere
