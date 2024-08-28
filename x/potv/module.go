@@ -1,44 +1,79 @@
 package potv
 
 import (
-	storetypes "cosmossdk.io/store/types"
-	"encoding/json"
+	"fmt"
+
 	"github.com/TucanaProtocol/Tucana/v8/x/potv/keeper"
 	"github.com/TucanaProtocol/Tucana/v8/x/potv/types"
+	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/spf13/cobra"
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"golang.org/x/net/context"
 )
 
 // AppModule represents the potv module type
 type AppModule struct {
-	module.AppModuleBasic
-
-	keeper   keeper.Keeper
-	cdc      codec.Codec
-	storeKey storetypes.StoreKey
+	keeper keeper.Keeper
 }
 
 // NewAppModule creates a new AppModule object
-func NewAppModule(cdc codec.Codec, storeKey storetypes.StoreKey, appModuleBasic module.AppModuleBasic) AppModule {
-	return AppModule{
-		AppModuleBasic: appModuleBasic,
-		cdc:            cdc,
-		storeKey:       storeKey,
-		keeper:         keeper.NewKeeper(cdc, storeKey),
-	}
+func NewAppModule(keeper keeper.Keeper) AppModule {
+	return AppModule{keeper: keeper}
+}
+
+func (am AppModule) IsOnePerModuleType() {
+	//TODO implement me
+	//panic("implement me")
+	fmt.Println("-----potv module-------------------IsOnePerModuleType")
+}
+
+func (am AppModule) IsAppModule() {
+	//TODO implement me
+	//panic("implement me")
+	fmt.Println("-----potv module-------------------IsAppModule")
 }
 
 // Name returns the potv module's name
-func (AppModule) Name() string {
+func (am AppModule) Name() string {
+	//TODO implement me
+	//panic("implement me")
+	fmt.Println("-----potv module-------------------Name")
 	return types.ModuleName
 }
 
-// RegisterInvariants registers the potv module's invariants
-func (am AppModule) RegisterInvariants(ir sdk.InvariantRegistry) {}
+func (am AppModule) RegisterLegacyAminoCodec(amino *codec.LegacyAmino) {
+	//TODO implement me
+	//panic("implement me")
+	fmt.Println("-----potv module-------------------RegisterLegacyAminoCodec")
+}
 
-// Route returns the potv module's message routing key
+func (am AppModule) RegisterInterfaces(registry codectypes.InterfaceRegistry) {
+	//TODO implement me
+	//panic("implement me")
+	fmt.Println("-----potv module-------------------RegisterInterfaces")
+}
+
+// RegisterGRPCGatewayRoutes registers gRPC Gateway routes for the potv module.
+func (am AppModule) RegisterGRPCGatewayRoutes(context client.Context, mux *runtime.ServeMux) {
+	//TODO implement me
+	//panic("implement me")
+	fmt.Println("-----potv module-------------------RegisterGRPCGatewayRoutes")
+}
+
+// EndBlock is a method that will be run after transactions are processed in a block.
+func (am AppModule) EndBlock(ctx context.Context) error {
+	//TODO implement me
+	//panic("implement me")
+	return am.keeper.EndBlocker(ctx)
+}
+
+/*
+
+// RegisterInvariants registers the potv module's invariants
+func (am AppModule) RegisterInvariants(ir sdk.InvariantRegistry) {}*/
+
+/*// Route returns the potv module's message routing key
 func (am AppModule) Route() string {
 	return types.RouterKey
 }
@@ -51,7 +86,7 @@ func (am AppModule) NewHandler() sdk.PostHandler {
 // QuerierRoute returns the potv module's querier route name
 func (am AppModule) QuerierRoute() string {
 	return types.QuerierRoute
-}
+}*/
 
 // NewQuerierHandler returns the potv module's querier.
 /*func (am AppModule) NewQuerierHandler() Querier {
@@ -64,7 +99,7 @@ func (am AppModule) QuerierRoute() string {
 	return nil
 }*/
 
-// ExportGenesis returns the exported genesis state as raw JSON bytes for the potv module.
+/*// ExportGenesis returns the exported genesis state as raw JSON bytes for the potv module.
 func (am AppModule) ExportGenesis(ctx sdk.Context) json.RawMessage {
 	return nil // No need to export genesis data for now
 }
@@ -78,17 +113,14 @@ func (am AppModule) GetTxCmd() *cobra.Command {
 func (am AppModule) GetQueryCmd() *cobra.Command {
 	// Placeholder for future query commands
 	return nil
-}
+}*/
 
 /*// RegisterRESTRoutes registers REST routes for the potv module.
 func (am AppModule) RegisterRESTRoutes(clientCtx sdk.ClientContext, rtr *mux.Router) {
 	// Placeholder for future REST routes
 }
 
-// RegisterGRPCGatewayRoutes registers gRPC Gateway routes for the potv module.
-func (am AppModule) RegisterGRPCGatewayRoutes(clientCtx sdk.ClientContext, mux *runtime.ServeMux) {
-	// Placeholder for future gRPC Gateway routes
-}
+
 
 // GetQueryService returns the potv module's QueryService
 func (am AppModule) GetQueryService() types.QueryService {

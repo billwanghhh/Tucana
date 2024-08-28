@@ -1,32 +1,25 @@
 package keeper
 
-//1. todo: build the endblocker
-//  demo: inflation
 import (
 	"context"
 	"fmt"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-// EndBlocker is the ABCI EndBlocker for the potv module
+// BeginBlocker is called at the beginning of each block
 func (k Keeper) EndBlocker(ctx context.Context) error {
 
-	// Unpack sdkCtx from ctx
+	// 从ctx中解包出sdkCtx
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
-	// Get a logger
+	// 获取日志记录器
 	logger := k.Logger(sdkCtx)
 
-	fmt.Printf("-----------potv----EndBlocker was called at height: %d\n", sdkCtx.BlockHeight())
-	logger.Info("-------------------------------potv-----abci--EndBlocker-----")
-
-	fmt.Printf("-----------potv----chainId: %s, gasMeter:%v, BlockGasMeter:%v \n",
-		sdkCtx.ChainID(), sdkCtx.GasMeter(), sdkCtx.BlockGasMeter())
-
-	// EmitEvent emits an event with the given type and attributes.
+	fmt.Printf("---------------EndBlocker was called at height: %d\n", sdkCtx.BlockHeight())
+	logger.Info("-------------------------------myendblocker-----abci--EndBlocker-----")
+	// 抛出事件
 	sdkCtx.EventManager().EmitEvent(sdk.NewEvent(
-		// Event type
-		"potv_end",
-		// Attribute with key "height" and value of the current block height
+		"myendblocker",
 		sdk.NewAttribute("height", fmt.Sprintf("%d", sdkCtx.BlockHeight())),
 	))
 
@@ -35,7 +28,7 @@ func (k Keeper) EndBlocker(ctx context.Context) error {
 
 	// 定义要查找的事件类型
 	eventType := sdk.EventTypeTx
-	eventAttributeKey := "height"
+	eventAttributeKey := "myendblocker"
 
 	// 遍历所有事件，查找特定类型的事件
 	for _, event := range events {

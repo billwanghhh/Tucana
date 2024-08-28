@@ -18,8 +18,6 @@ func (k Keeper) BeginBlocker(ctx context.Context) error {
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 	logger := k.Logger(sdkCtx)
 
-	logger.Info("-------------------------------bill------------")
-
 	k.IterateEpochInfo(sdkCtx, func(_ int64, epochInfo types.EpochInfo) (stop bool) {
 		// Has it not started, and is the block time > initial epoch start time
 		shouldInitialEpochStart := !epochInfo.EpochCountingStarted && !epochInfo.StartTime.After(sdkCtx.BlockTime())

@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+
 	"io"
 	"net/http"
 	"os"
@@ -164,6 +165,13 @@ import (
 	coinswapkeeper "github.com/TucanaProtocol/Tucana/v8/x/coinswap/keeper"
 	coinswaptypes "github.com/TucanaProtocol/Tucana/v8/x/coinswap/types"
 
+	"github.com/TucanaProtocol/Tucana/v8/x/mybeginblocker"
+	mybeginblockerkeeper "github.com/TucanaProtocol/Tucana/v8/x/mybeginblocker/keeper"
+	mybeginblockertypes "github.com/TucanaProtocol/Tucana/v8/x/mybeginblocker/types"
+
+	// potv
+	"github.com/TucanaProtocol/Tucana/v8/x/potv"
+	potvkeeper "github.com/TucanaProtocol/Tucana/v8/x/potv/keeper"
 	potvtypes "github.com/TucanaProtocol/Tucana/v8/x/potv/types"
 
 	v2 "github.com/TucanaProtocol/Tucana/v8/app/upgrades/v2"
@@ -254,6 +262,10 @@ type Canto struct {
 	OnboardingKeeper *onboardingkeeper.Keeper
 	GovshuttleKeeper govshuttlekeeper.Keeper
 	CSRKeeper        csrkeeper.Keeper
+	//声明my
+	MyBeginBlockerKeeper mybeginblockerkeeper.Keeper
+
+	PotvKeeper potvkeeper.Keeper
 
 	// Coinswap keeper
 	CoinswapKeeper coinswapkeeper.Keeper
@@ -374,6 +386,9 @@ func NewCanto(
 		govshuttletypes.StoreKey,
 		// Coinswap keys
 		coinswaptypes.StoreKey,
+		//
+		mybeginblockertypes.StoreKey,
+		potvtypes.StoreKey,
 	)
 
 	// register streaming services
@@ -427,6 +442,7 @@ func NewCanto(
 		sdk.GetConfig().GetBech32AccountAddrPrefix(),
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
+
 	app.BankKeeper = bankkeeper.NewBaseKeeper(
 		appCodec,
 		runtime.NewKVStoreService(keys[banktypes.StoreKey]),
@@ -668,6 +684,19 @@ func NewCanto(
 		),
 	)
 
+	//Todo:
+	// 创建MyBeginBlockerKeeper实例
+	app.MyBeginBlockerKeeper = mybeginblockerkeeper.NewKeeper(
+		keys[mybeginblockertypes.StoreKey],
+	)
+	// 创建AppModule实例---废弃：在模块管理器中直接new了
+	//myBeginBlockerAppModule := mybeginblocker.NewAppModule(app.MyBeginBlockerKeeper)
+
+	// potv instance
+	app.PotvKeeper = potvkeeper.NewKeeper(
+		keys[potvtypes.StoreKey],
+	)
+
 	app.EvmKeeper = app.EvmKeeper.SetHooks(
 		evmkeeper.NewMultiEvmHooks(
 			app.Erc20Keeper.Hooks(),
@@ -767,6 +796,11 @@ func NewCanto(
 		govshuttle.NewAppModule(appCodec, app.GovshuttleKeeper, app.AccountKeeper, app.AccountKeeper.AddressCodec()),
 		csr.NewAppModule(appCodec, app.CSRKeeper, app.AccountKeeper),
 		coinswap.NewAppModule(appCodec, app.CoinswapKeeper, app.AccountKeeper, app.BankKeeper),
+		//在模块管理器中添加你的模块-创建并返回应用程序实例
+		//myBeginBlockerAppModule,
+		mybeginblocker.NewAppModule(app.MyBeginBlockerKeeper),
+		// potv new module
+		potv.NewAppModule(app.PotvKeeper),
 	)
 
 	// BasicModuleManager defines the module BasicManager is in charge of setting up basic,
@@ -825,8 +859,8 @@ func NewCanto(
 		onboardingtypes.ModuleName,
 		govshuttletypes.ModuleName,
 		coinswaptypes.ModuleName,
-		//	potv
-		potvtypes.ModuleName,
+		// my
+		mybeginblockertypes.ModuleName,
 	)
 
 	// NOTE: fee market module must go last in order to retrieve the block gas used.
@@ -859,7 +893,9 @@ func NewCanto(
 		csrtypes.ModuleName,
 		coinswaptypes.ModuleName,
 		// Note: epochs' endblock should be "real" end of epochs, we keep epochs endblock at the end
-		epochstypes.ModuleName,
+		//epochstypes.ModuleName,
+		//	potv
+		potvtypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
