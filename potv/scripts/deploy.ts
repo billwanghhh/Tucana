@@ -1,18 +1,26 @@
 import { ethers, upgrades } from "hardhat";
 import * as fs from 'fs';
 
+// 定义一个函数来部署可升级的合约
 async function deployUpgradeableContract(name: string, factory: any, ...args: any[]) {
   console.log(`Deploying ${name}...`);
+  // 使用upgrades模块的deployProxy方法部署代理合约
   const contract = await upgrades.deployProxy(factory, args, { initializer: 'initialize' });
+  // 等待合约部署完成
   await contract.waitForDeployment();
+  // 获取合约地址
   const address = await contract.getAddress();
+  // 打印合约部署地址
   console.log(`${name} deployed to:`, address);
+  // 返回合约信息（名称、地址和合约实例）
   return { name, address, contract };
 }
 
+// 主函数
 async function main() {
   console.log("Deploying contracts...");
 
+  // 定义一个对象来存储已部署合约的地址
   const deployedContracts: { [key: string]: string } = {};
 
   // Deploy Config

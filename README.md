@@ -1,4 +1,4 @@
-# Becoming A Validator
+# rBecoming A Validator
 
 **How to validate on the Canto Mainnet**
 
@@ -10,20 +10,23 @@
 ## Hardware Requirements
 
 ### Minimum:
+
 * 16 GB RAM
 * 100 GB NVME SSD
 * 3.2 GHz x4 CPU
 
 ### Recommended:
+
 * 32 GB RAM
 * 500 GB NVME SSD
 * 4.2 GHz x6 CPU
 
 ### Operating System:
+
 * Linux (x86_64) or Linux (amd64)
 * Recommended Ubuntu or Arch Linux
 
-## Install dependencies 
+## Install dependencies
 
 **If using Ubuntu:**
 
@@ -61,9 +64,9 @@ sudo mv $HOME/go/bin/tucd /usr/bin/
 
 Replace `<keyname>` below with whatever you'd like to name your key.
 
-*  `tucd keys add <key_name>`
-*  `tucd keys add <key_name> --recover` to regenerate keys with your mnemonic
-*  `tucd keys add <key_name> --ledger` to generate keys with ledger device
+* `tucd keys add <key_name>`
+* `tucd keys add <key_name> --recover` to regenerate keys with your mnemonic
+* `tucd keys add <key_name> --ledger` to generate keys with ledger device
 
 Store a backup of your keys and mnemonic securely offline.
 
@@ -82,7 +85,7 @@ You'll use this file later when creating your validator txn.
 
 ## Set up validator
 
-Install tucd binary from `Canto` directory: 
+Install tucd binary from `Canto` directory:
 
 `sudo make install`
 
@@ -92,12 +95,12 @@ Initialize the node. Replace `<moniker>` with whatever you'd like to name your v
 
 If this runs successfully, it should dump a blob of JSON to the terminal.
 
-Download the Genesis file: 
+Download the Genesis file:
 
-`wget https://raw.githubusercontent.com/Canto-Network/Canto/genesis/Networks/Mainnet/genesis.json -P $HOME/.tucd/config/` 
+`wget https://raw.githubusercontent.com/Canto-Network/Canto/genesis/Networks/Mainnet/genesis.json -P $HOME/.tucd/config/`
 
 > _**Note:** If you later get `Error: couldn't read GenesisDoc file: open /root/.tucd/config/genesis.json: no such file or directory` put the genesis.json file wherever it wants instead, such as:
-> 
+>
 > `sudo wget https://github.com/Canto-Network/Canto/raw/main/Mainnet/genesis.json -P/root/.tucd/config/`
 
 Edit the minimum-gas-prices in `${HOME}/.tucd/config/app.toml`:
@@ -109,7 +112,7 @@ Add persistent peers to `$HOME/.tucd/config/config.toml`:
 
 ### Set `tucd` to run automatically
 
-* Start `tucd` by creating a systemd service to run the node in the background: 
+* Start `tucd` by creating a systemd service to run the node in the background:
 * Edit the file: `sudo nano /etc/systemd/system/tucd.service`
 * Then copy and paste the following text into your service file. Be sure to edit as you see fit.
 
@@ -137,15 +140,15 @@ WantedBy=multi-user.target
 
 ## Start the node
 
-Reload the service files: 
+Reload the service files:
 
 `sudo systemctl daemon-reload`
 
-Create the symlinlk: 
+Create the symlinlk:
 
 `sudo systemctl enable tucd.service`
 
-Start the node: 
+Start the node:
 
 `sudo systemctl start tucd && journalctl -u tucd -f`
 
