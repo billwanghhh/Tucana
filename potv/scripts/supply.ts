@@ -4,7 +4,7 @@ import ContractAdds from "../deployed-addresses.json"
 import config from "../config.json"
 
 async function main() {
-    
+    const collateral_1 = await ethers.getContractAt("MockToken", ContractAdds.Collateral_1);
     // ----检查代币是否在白名单中
     // 获取 Config 合约的实例，并使用 isWhitelistToken 方法检查 Collateral_1 代币是否在白名单中。
     const configContract = await ethers.getContractAt("Config", ContractAdds.Config);

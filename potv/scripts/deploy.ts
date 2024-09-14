@@ -46,15 +46,15 @@ async function main() {
   deployedContracts["Pool"] = poolAddress;
 
   // Deploy USD
-  const Usd = await ethers.getContractFactory("USD");
-  const { address: usdAddress } = await deployUpgradeableContract("USD", Usd, poolAddress);
-  deployedContracts["USD"] = usdAddress;
+  const Usd = await ethers.getContractFactory("TUCUSD");
+  const { address: usdAddress } = await deployUpgradeableContract("TUCUSD", Usd, poolAddress);
+  deployedContracts["TUCUSD"] = usdAddress;
 
   await pool.setUsdAddress(usdAddress);
 
   // Deploy Reward
   const Reward = await ethers.getContractFactory("Reward");
-  const { address: rewardAddress, contract: reward } = await deployUpgradeableContract("Reward", Reward, configAddress, ethers.ZeroAddress, chainAddress);
+  const { address: rewardAddress, contract: reward } = await deployUpgradeableContract("Reward", Reward, configAddress, ethers.ZeroAddress);
   deployedContracts["Reward"] = rewardAddress;
 
   // Deploy Lend

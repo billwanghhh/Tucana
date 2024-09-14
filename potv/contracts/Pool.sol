@@ -6,19 +6,24 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeab
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./interfaces/IConfig.sol";
-import "./interfaces/IUSD.sol";
+import "./interfaces/ITUCUSD.sol";
 import "./interfaces/IPool.sol";
 
 contract Pool is Initializable, OwnableUpgradeable, IPool {
     using SafeERC20Upgradeable for IERC20Upgradeable;
 
     IConfig public config;
-    IUSD public usdToken;
+    ITUCUSD public usdToken;
     address public lendContract;
     
     mapping(address => uint256) public userBorrow;
     uint256 public totalBorrow;
 
+
+    
+
+
+    /// token address => user address => amount
     mapping(address => mapping(address => uint256)) public userSupply;
     mapping(address => uint256) public totalSupply;
 
@@ -42,7 +47,7 @@ contract Pool is Initializable, OwnableUpgradeable, IPool {
     }
 
     function setUsdAddress(address _usdAddress) external onlyOwner {
-        usdToken = IUSD(_usdAddress);
+        usdToken = ITUCUSD(_usdAddress);
     }
 
    
@@ -58,13 +63,13 @@ contract Pool is Initializable, OwnableUpgradeable, IPool {
         emit IncreaseToken(user, tokenAddress, amount);
     }
 
-    function decreasePoolToken(address user,address tokenAddress, uint256 amount) external onlyLend {
+    function decreasePoolToken(address user, address receiver, address tokenAddress, uint256 amount) external onlyLend {
         require(userSupply[tokenAddress][user] >= amount, "Pool: Insufficient balance");
 
         userSupply[tokenAddress][user] -= amount;
         totalSupply[tokenAddress] -= amount;
 
-        IERC20Upgradeable(tokenAddress).safeTransfer(user, amount);
+        IERC20Upgradeable(tokenAddress).safeTransfer(receiver, amount);
 
         emit DecreaseToken(user, tokenAddress, amount);
     }
